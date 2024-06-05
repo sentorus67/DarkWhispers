@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Whispers</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>A run in the Temple</h1>
+  </header>
+
+  <nav>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav>
+
+  <main>
+    <aside>
+      <h2>Enjoy the galleries!</h2>
+      <a href="/game">Start Game</a>
+
+    </aside>
+
+    <div class="contents">
+      {{{body}}}
+    </div>
+
+  </main>
+
+
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
