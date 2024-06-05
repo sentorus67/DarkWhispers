@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-const routes = require("./controllers");
+const routes = require("./controllers/index");
 
 // helpers???
 
@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 //COOKIES
 
 // const sess = {
-//     secret: 'Super secret secret',
+//     secret: process.env.SESSION_SECRET,
 //     cookie: {
 //       maxAge: 300000,
 //       httpOnly: true,
