@@ -1,36 +1,27 @@
-require('dotenv').config();
 const express = require('express');
-const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { sequelize } = require('./config/config'); // Adjusted import
+const db = require('./models');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-const hbs = exphbs.create({});
+// Session store
+const store = new SequelizeStore({
+  db: db.sequelize,
+});
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: store,
+  resave: false,
+  saveUninitialized: false,
+}));
+
+store.sync();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize,
-    }),
-  })
-);
+// Your routes and other middleware here
 
-app.use(require('./routes'));
-
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
-});
+module.exports = app;
