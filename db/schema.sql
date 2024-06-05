@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS darkwhispers_db;
-CREATE DATABASE darkwhispers_db;
+DROP DATABASE IF EXISTS darkwhispers;
+CREATE DATABASE darkwhispers;

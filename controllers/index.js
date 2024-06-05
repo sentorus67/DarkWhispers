@@ -1,9 +1,14 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
-const apiRoutes = require('./api');
-const homeRoutes = require('./homeRoutes');
+// Import your individual route files here
+const authRoutes = require('./authRoutes');
+const gameRoutes = require('./gameRoutes');
+const adminRoutes = require('./adminRoutes');
 
-router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
+// Use the routes
+router.use('/auth', authRoutes);
+router.use('/game', gameRoutes);
+router.use('/admin', adminRoutes);
 
 module.exports = router;

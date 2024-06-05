@@ -1,19 +1,31 @@
-const Sequelize = require('sequelize');
-const { sequelize } = require('../config/config');
+const { Sequelize, DataTypes } = require('sequelize');
+const config = require('../config/config.js');
 
-const Game = require('./Game');
+const env = process.env.NODE_ENV || 'development';
+const dbConfig = config[env];
+const sequelize = config.sequelize; // Use the exported sequelize instance
 
-const models = {
-  Game,
-};
+const db = {};
 
-Object.keys(models).forEach((modelName) => {
-  if ('associate' in models[modelName]) {
-    models[modelName].associate(models);
-  }
-});
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-models.sequelize = sequelize;
-models.Sequelize = Sequelize;
+// Import models here
+db.User = require('./user');
+db.Game = require('./Game');
+db.Scenario = require('./scenario');
 
-module.exports = models;
+// Optionally, create associations here
+if (db.User.associate) {
+  db.User.associate(db);
+}
+
+if (db.Game.associate) {
+  db.Game.associate(db);
+}
+
+if (db.Scenario.associate) {
+  db.Scenario.associate(db);
+}
+
+module.exports = db;

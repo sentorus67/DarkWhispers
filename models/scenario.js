@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config').sequelize;
 
-class Game extends Model {}
+class Scenario extends Model {}
 
-Game.init(
+Scenario.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,12 +15,12 @@ Game.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    genre: {
-      type: DataTypes.STRING,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    releaseDate: {
-      type: DataTypes.DATE,
+    choices: {
+      type: DataTypes.JSONB,
       allowNull: false,
     },
   },
@@ -29,8 +29,8 @@ Game.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'game',
+    modelName: 'scenario',
   }
 );
 
-module.exports = Game;
+module.exports = Scenario;
