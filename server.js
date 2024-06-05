@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
@@ -5,15 +6,15 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers/index");
 
 // helpers???
+const hbs = exphbs.create({});
 
 const sequelize = require("./config/config");
-const sequelizeStore = require("connect-session-sequelize")(session.Store);
+// const sequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 //COOKIES
-
 // const sess = {
 //     secret: process.env.SESSION_SECRET,
 //     cookie: {
@@ -29,7 +30,7 @@ const PORT = process.env.PORT || 3001;
 //     })
 //   };
 
-app.use(session(sess));
+// app.use(session(sess));
 
 // Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
@@ -41,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-});
+// sequelize.sync({ force: false }).then(() => {
+//   app.listen(PORT, () => console.log('Now listening'));
+// });
+
+app.listen(PORT, () => console.log('Now listening'));
