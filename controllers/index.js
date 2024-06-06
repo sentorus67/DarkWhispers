@@ -5,8 +5,10 @@ const router = express.Router();
 const authRoutes = require('./authRoutes');
 const gameRoutes = require('./gameRoutes');
 const adminRoutes = require('./adminRoutes');
+const homeRoutes=require('./homeRoutes');
 
 // Use the routes
+router.use('/',homeRoutes);
 router.use('/auth', authRoutes);
 router.use('/game', gameRoutes);
 router.use('/admin', adminRoutes);

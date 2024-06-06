@@ -34,10 +34,12 @@
 
   <script src='script.js'></script>
 </body>
- {{/if}}
-<header>
-    <h1> Please login before accesing the Game.<h1>
-    <a href="./index.handlebars">Return to homepage</a>
-</header>
+
  {{else}}
+ <header>
+    <h1> Please login before accesing the Game.<h1>
+    <a href="/index">Return to homepage</a>
+
+</header>
+  {{/if}}
 </html>
