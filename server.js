@@ -4,13 +4,12 @@ const app = express();
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-// const config = require('./config/config.js');
+const config = require('./config/config.js');
 const sequelize = require('./config/sequelize.js');
 const routes = require('./controllers/index');
 
-const PORT = process.env.PORT || 3001;
 
-// const { sequelize } = config;
+const PORT = process.env.PORT || 3001;
 
 // Configure session and cookies
 const sess = {
@@ -28,7 +27,7 @@ const sess = {
   }),
 };
 
-app.use(session(sess));
+//app.use(session(sess));
 
 // Set up Handlebars.js as the template engine
 app.engine('handlebars', exphbs.engine());
