@@ -7,8 +7,9 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT || 5432,
+    port: process.env.DB_PORT || 3001,
   }
 );
 
-module.exports=sequelize;
+module.exports = sequelize;
+// // This file is responsible for creating and exporting the Sequelize instance, which is used to interact with your PostgreSQL database.
