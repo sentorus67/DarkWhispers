@@ -20,3 +20,5 @@ const dbConfig = {
 };
 
 module.exports = dbConfig;
+
+// This file organizes the configuration settings for different environments (development and production). It imports the Sequelize instance from sequelize.js and includes environment-specific configurations.
