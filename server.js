@@ -2,15 +2,13 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const config = require('./config/config'); // Ensure the correct path to config.js
 const routes = require('./controllers/index'); // Ensure this path is correct
+
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-// Extract the sequelize instance from the config
-const { sequelize } = config;
 
 // Configure session and cookies
 const sess = {
