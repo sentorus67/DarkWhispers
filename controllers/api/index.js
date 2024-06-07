@@ -1,8 +1,6 @@
-// const router = require('express').Router();
-// const userRoutes = require('./s');
-// const projectRoutes = require('./projectRoutes');
+const router = require('express').Router();
+const gameRoute = require('./game');
 
-// router.use('/users', userRoutes);
-// router.use('/projects', projectRoutes);
+router.use('/game', gameRoute);
 
-// module.exports = router;
+module.exports = router;

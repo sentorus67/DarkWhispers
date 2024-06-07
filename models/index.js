@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const config = require('../config/config.js');
+const sequelize = require('../config/connection');
 
-const env = process.env.NODE_ENV || 'development';
-const dbConfig = config[env];
-const sequelize = config.sequelize; // Use the exported sequelize instance
+// const env = process.env.NODE_ENV || 'development';
+// const dbConfig = config[env];
+// const sequelize = config.sequelize; // Use the exported sequelize instance
 
 const db = {};
 
