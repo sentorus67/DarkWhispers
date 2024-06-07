@@ -6,7 +6,31 @@
   body in charge of text and info for game running
 
 --}}
+<main>
+
+  <header>
+    <h1>Welcome to Dark Whispers</h1>
+  </header>
+
+  <body>
+
+
+  </body>
+
+
+</main>
 
 {{else}}
-<a href="/login">You must login first to view this page</a>
+    <div class="card">
+  <div class="card-content">
+    <div class="content">
+   Please Login before access this page
+    </div>
+    <a href="/login" class="button is-light is-rounded">login</a>
+    <a href="/register"class="button is-dark is-rounded">signup</a>
+    <a href="/bypass" class="button is-primary is-rounded"> Temp. bypass</a>
+  </div>
+
+</div>
+
 {{/if}}

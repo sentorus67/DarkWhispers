@@ -11,35 +11,11 @@
 </head>
 
 <body>
-{{#if loggedIn}}
-  <header>
-    <h1>A run in the Temple</h1>
-  </header>
-
-  <nav>
-    <button id="logout" class="btn-no-style">Logout</button>
-  </nav>
-
-  <main>
-
-    <div class="contents">
-      {{{body}}}
-    </div>
-
-  </main>
 
 
-  <script src="/js/logout.js"></script>
+{{{body}}}
 
 
-  <script src='script.js'></script>
 </body>
 
- {{else}}
- <header>
-    <h1> Please login before accesing the Game.<h1>
-    <a href="/index">Return to homepage</a>
-
-</header>
-  {{/if}}
 </html>
