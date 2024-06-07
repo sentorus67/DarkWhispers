@@ -1,31 +1,25 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const config = require('../config/config.js');
-
-const env = process.env.NODE_ENV || 'development';
-const dbConfig = config[env];
-const sequelize = config.sequelize; // Use the exported sequelize instance
+const Sequelize = require('sequelize');
+const sequelize = require('../config/sequelize');
 
 const db = {};
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-// Import models here
+// Import models
 db.User = require('./user');
 db.Game = require('./Game');
 db.Scenario = require('./scenario');
+db.GameState = require('./gameState');
 
-// Optionally, create associations here
-if (db.User.associate) {
-  db.User.associate(db);
-}
+// Create associations
+db.User.hasMany(db.GameState, { foreignKey: 'user_id' });
+db.GameState.belongsTo(db.User, { foreignKey: 'user_id' });
 
-if (db.Game.associate) {
-  db.Game.associate(db);
-}
+db.Game.hasMany(db.Scenario, { foreignKey: 'game_id' });
+db.Scenario.belongsTo(db.Game, { foreignKey: 'game_id' });
 
-if (db.Scenario.associate) {
-  db.Scenario.associate(db);
-}
+db.Scenario.hasMany(db.GameState, { foreignKey: 'current_scenario_id' });
+db.GameState.belongsTo(db.Scenario, { foreignKey: 'current_scenario_id' });
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;
