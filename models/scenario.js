@@ -11,6 +11,14 @@ Scenario.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    game_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'game',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,

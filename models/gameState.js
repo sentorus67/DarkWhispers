@@ -14,14 +14,14 @@ GameState.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users',
         key: 'id',
       },
     },
     current_scenario_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'scenario',
+        model: 'scenarios',
         key: 'id',
       },
     },
@@ -36,10 +36,11 @@ GameState.init(
   },
   {
     sequelize,
-    modelName: 'gameState',
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'gameState',
+    tableName: 'game_states',  // Ensure the table name is 'game_states'
   }
 );
 
