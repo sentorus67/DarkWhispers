@@ -5,7 +5,7 @@ const db = {};
 
 // Import models
 db.User = require('./user');
-db.Game = require('./Game');
+db.Game = require('./game');
 db.Scenario = require('./scenario');
 db.GameState = require('./gameState');
 
