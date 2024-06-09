@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 const seedUsers = async () => {
   const hashedPassword1 = await bcrypt.hash('password1', 10);
   const hashedPassword2 = await bcrypt.hash('password2', 10);
-
+  const hashedPassword3 = await bcrypt.hash('password2', 10);
+  
   await User.bulkCreate([
     {
       id: 1, // Manually set ID for testing

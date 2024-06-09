@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
-const User = require('./User');
+const User = require('./user');
 const Game = require('./Game');
-const Scenario = require('./Scenario');
-const GameState = require('./GameState');
-const Item = require('./Item');
+const Scenario = require('./scenario');
+const GameState = require('./gameState');
+const Item = require('./item');
 
 // Create associations
 User.hasMany(GameState, {
