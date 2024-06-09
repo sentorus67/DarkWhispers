@@ -5,13 +5,19 @@ const jwt = require('jsonwebtoken');
 // Create a new admin user
 const createAdminUser = async () => {
   try {
-    const adminUser = await User.create({
-      username: 'adminUser',
-      password: await bcrypt.hash('adminPassword', 10), // Hash the password
-      email: 'admin@example.com',
-      role: 'admin',
-    });
-    console.log('Admin user created:', adminUser);
+    const existingAdmin = await User.findOne({ where: { email: 'admin@example.com' } });
+
+    if (!existingAdmin) {
+      const adminUser = await User.create({
+        username: 'adminUser',
+        password: await bcrypt.hash('adminPassword', 10), // Hash the password
+        email: 'admin@example.com',
+        role: 'admin',
+      });
+      console.log('Admin user created:', adminUser);
+    } else {
+      console.log('Admin user already exists');
+    }
   } catch (err) {
     console.error('Error creating admin user:', err);
   }
@@ -25,6 +31,12 @@ exports.register = async (req, res) => {
 
     // Log received data
     console.log('Received data:', { username, password, email });
+
+    // Check if the user already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already in use' });
+    }
 
     // Hash the password before saving it to the database
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -71,12 +83,19 @@ exports.login = async (req, res) => {
     // Stateless Sessions: JWT allows for stateless authentication. Instead of storing session data on the server, the token contains all the necessary information (e.g., user ID) and can be verified using the secret key.
     // Security: JWT tokens are signed to prevent tampering. If someone tries to alter the token, the signature verification will fail, and the token will be rejected. Overall, JWT provides a secure and scalable way to handle user authentication in web applications.
 
-    req.session.token = token;
-    res.header('Authorization', token).send(token);
+    req.session.save(() => {
+      req.session.token = token;
+      req.session.userId = user.id;
+      req.session.username = user.username;
+      req.session.loggedIn = true;
+
+      res.status(200).json({ message: 'Login successful', redirectUrl: '/game' });
+    });
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
+
 
 exports.logout = (req, res) => {
   req.session.destroy(err => {
