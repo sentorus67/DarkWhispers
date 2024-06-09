@@ -21,31 +21,33 @@ createAdminUser();
 
 exports.register = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
 
-    // Check if the user already exists
-    const userExists = await User.findOne(
-      {
-        where: {
-          username
-        }
-      });
+    // Log received data
+    console.log('Received data:', { username, password, email });
 
-    if (userExists) return res.status(400).send('User already exists');
-
-    // Hash the password
+    // Hash the password before saving it to the database
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Hashed password:', hashedPassword);
 
-    // Create a new user
-    const user = await User.create(
-      {
-        username,
-        password: hashedPassword
-      });
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
 
-    res.send(user);
+    req.session.save(() => {
+      req.session.userId = newUser.id;
+      req.session.username = newUser.username;
+      req.session.loggedIn = true;
+
+      console.log('User created and session saved:', newUser);
+      res.status(200).json(newUser);
+    });
   } catch (err) {
-    res.status(500).send(err.message);
+    // Log the error
+    console.error('Error during sign-up:', err);
+    res.status(500).json({ error: err.message });
   }
 };
 
