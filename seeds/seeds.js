@@ -1,7 +1,35 @@
-// Possible table ideas
+const sequelize = require('../config/connection');
+const seedUsers = require('./userSeed');
+const seedGames = require('./gameSeed');
+const seedScenarios = require('./scenarioSeed');
+const seedGameStates = require('./gameStateSeed');
+const seedItems = require('./itemSeed');
 
-// Table 1: user
-// has the username, and number record of played adventures, maybe a score system. 
+const seedAll = async () => {
+  try {
+    await sequelize.sync({ force: true });
+    console.log('Database synced');
 
-// table 3: Explorer
-// has name based of username(foreign key), the scenario the explorer is currently in(foreign key), Booleans based on if they have items or not.
+    await seedUsers();
+    console.log('Users seeded');
+
+    await seedGames();
+    console.log('Games seeded');
+
+    await seedScenarios();
+    console.log('Scenarios seeded');
+
+    await seedItems();
+    console.log('Items seeded');
+
+    await seedGameStates();
+    console.log('Game States seeded');
+
+    process.exit(0);
+  } catch (error) {
+    console.error('Error during seeding:', error);
+    process.exit(1);
+  }
+};
+
+seedAll();
