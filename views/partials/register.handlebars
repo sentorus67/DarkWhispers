@@ -1,45 +1,36 @@
- {{!-- <div class="login-card">
-    <h2 class="page-title">Signup</h2>
 
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username-signup" />
+<div class="card">
+  <div class="container is-fluid">
+
+    <form class="card" id="signup-form" method="POST" action="/api/auth/register">
+      
+      <h1 class=" has-text-centered mb-4 is-size-2 ">Register</h1>
+
+      <div class="has-text-centered my-2 is-size-4 field">
+        <label class="label">Username:</label>
+        <input class="input column is-half is-offset-one-quarter is-large" type="text" id="username" name="username" placeholder="Input Username"/>
       </div>
-      <div class="form-group">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
+
+      <div class="has-text-centered my-2 is-size-4 field">
+        <label class="label">Email:</label>
+        <input class="input column is-half is-offset-one-quarter is-large" type="email" id="email" name="email" placeholder="Input Username"/>
       </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
+
+      <div class=" control has-text-centered my-2 is-size-4 has-icons-right">
+        <label class="label">Password:</label>
+        <input class="input column is-half is-offset-one-quarter is-large" type="password" id="password" name="password" placeholder="*******"/>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
       </div>
-      <div class="">
-        <button class="" type="submit">signup</button>
+
+      <div class="columns is-centered">
+        <button class="button is-light is-rounded column is-one-quarter my-3 is-centered" type="submit">Sign Up</button>
       </div>
+
     </form>
 
-  </div> --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-</head>
-<body>
-  <form id="signup-form" method="POST" action="/api/auth/register">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+  </div>
+</div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <button type="submit">Sign Up</button>
-  </form>
-</body>
-</html>
 

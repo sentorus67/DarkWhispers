@@ -47,7 +47,7 @@ router.get('/register', async (req, res) => {
 //can delete bypass once testing is done
 router.get('/bypass', async (req, res) => {
   try {
-    res.render('./partials/scenario' , {
+    res.render('./partials/game' , {
         loggedIn: true
         });
   } catch (err) {
@@ -57,7 +57,7 @@ router.get('/bypass', async (req, res) => {
 
 // Render game page
 
-router.get('/game', withAuth, async (req, res) => {
+router.get('/game', /**withAuth,*/ async (req, res) => {
   try {
     res.render('./partials/scenario' , {
         loggedIn: true
