@@ -33,23 +33,22 @@ User.init(
         isEmail: true,
       },
     },
-    //Courtney
     role: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'user', // Default role is 'user', set 'admin' for admin users
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    gameId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'game',
-        key: 'id',
-      },
-    },
+    // status: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // gameId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'game',
+    //     key: 'id',
+    //   },
+    // },
   },
   {
     hooks: {

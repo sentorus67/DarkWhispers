@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const scenarioController = require('../../controllers/scenarioController');
-const ensureAdmin = require('../../middleware/admin');
+const ensureAdmin = require('../../middleware/authMiddleware');
 
 // Protect all admin routes with ensureAdmin middleware
 router.use(ensureAdmin);

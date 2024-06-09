@@ -11,16 +11,27 @@ const seedUsers = async () => {
       username: 'player1',
       email: 'player1@example.com',
       password: hashedPassword1,
+      role: 'user',
     },
     {
       id: 2, // Manually set ID for testing
       username: 'player2',
       email: 'player2@example.com',
       password: hashedPassword2,
+      role: 'user',
     },
-  ], {
-    ignoreDuplicates: true // In case the users already exist, ignore the duplicate entries
-  });
+    // added for testing
+    {
+      id: 3,
+      username: 'admin',
+      email: 'admin@example.com',
+      password: hashedPassword3,
+      role: 'admin',
+    },
+  ],
+    {
+      ignoreDuplicates: true // In case the users already exist, ignore the duplicate entries
+    });
 };
 
 module.exports = seedUsers;

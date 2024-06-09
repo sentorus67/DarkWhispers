@@ -44,6 +44,7 @@ router.get('/register', async (req, res) => {
   }
 });
 
+//can delete bypass once testing is done
 router.get('/bypass', async (req, res) => {
   try {
     res.render('./partials/scenario' , {
@@ -67,18 +68,18 @@ router.get('/game', withAuth, async (req, res) => {
 });
 
 //Render admin page
-router.get('/admin', withAuth, async (req, res) => {
+router.get('/admin', /**withAuth*/ async (req, res) => {
     try {
-      // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes: { exclude: ['password'] },
-        include: [{ model: Scenario }],
-      });
+      // // Find the logged in user based on the session ID
+      // const userData = await User.findByPk(req.session.user_id, {
+      //   attributes: { exclude: ['password'] },
+      //   include: [{ model: Scenario }],
+      // });
   
-      const user = userData.get({ plain: true });
+      // const user = userData.get({ plain: true });
   
-      res.render('profile', {
-        ...user,
+      res.render('./partials/admin', {
+        // ...user,
         logged_in: true
       });
     } catch (err) {
