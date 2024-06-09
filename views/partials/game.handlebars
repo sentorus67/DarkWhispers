@@ -8,27 +8,52 @@
 --}}
 <main>
 
-  <header>
-    <h1>Welcome to Dark Whispers</h1>
-  </header>
+  <div class="has-text-centered">
+    <h2 class="is-size-3">Welcome to Dark Whispers</h2>
+    <a href="/admin" class="button is-light is-rounded"> Admin Toolkit</a>
+  </div>
 
-  <body>
+ 
+  <h2 class="has-text-centered is-size-3 my-4"> Choose your Adventure</h2>
 
+<section class="columns is-centered my-4">
 
-  </body>
+  <div class="box column is-one-third has-background-link-dark is-rounded mx-2 ">
+    <h3 class="content is-size-4">Journey through the dark forest</h3>
+    <a href="/game" class="button is-primary is-rounded">Continue</a>
+    <a href="/game" class="button is-danger is-rounded">New Game</a>
+  </div>
+
+  <div class="box column is-one-third has-background-link-dark is-rounded mx-2">
+    <h3 class="content is-size-4">More to come...</h3>
+  </div>
+
+ </section>
 
 
 </main>
 
 {{else}}
     <div class="card">
-  <div class="card-content">
-    <div class="content">
+  <div class="card-content has-text-centered">
+
+    <div class="content ">
    Please Login before access this page
     </div>
-    <a href="/login" class="button is-light is-rounded">login</a>
-    <a href="/register"class="button is-dark is-rounded">signup</a>
-    <a href="/bypass" class="button is-primary is-rounded"> Temp. bypass</a>
+
+    <div class="columns is-centered">
+      <a href="/login" class="button is-light is-rounded column is-half my-3 ">login</a>
+    </div>
+
+    <div class="columns is-centered">
+      <a href="/register"class="button is-dark is-rounded column is-half my-3">signup</a>
+    </div>
+
+    <div class="columns is-centered">
+      <a href="/bypass" class="button is-primary is-rounded column is-one-quarter my-3"> Temp. bypass</a>
+    </div>
+   
+
   </div>
 
 </div>
