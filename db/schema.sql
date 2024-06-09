@@ -4,12 +4,13 @@ CREATE DATABASE darkwhispers_db;
 
 \c darkwhispers_db;
 
--- Drop any tbales if they exist
+-- Drop any tables if they exist
+DROP TABLE IF EXISTS game_states_items;
+DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS game_states;
 DROP TABLE IF EXISTS scenarios;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS users;
-
 
 -- Users: Stores user information with a unique username and a hashed password.
 CREATE TABLE users (
@@ -34,8 +35,6 @@ CREATE TABLE scenarios (
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     choices JSONB NOT NULL 
---     JSONB stands for "JSON Binary" and is a data type in PostgreSQL that stores JSON data in a binary format. This format allows for efficient querying and indexing of JSON data.
--- This column is used to store the possible choices a player can make at a particular scenario. For example, in a text-based adventure game, each scenario might have multiple choices that affect the game's progression. These choices can be stored as a JSON object to allow for complex structures and easy querying.
 );
 
 -- GameStates: Stores the current state of the game for each user. It references the users and scenarios tables and stores the state of the game as JSON.
@@ -44,6 +43,19 @@ CREATE TABLE game_states (
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     current_scenario_id INTEGER REFERENCES scenarios(id) ON DELETE CASCADE,
     state JSONB NOT NULL,
-    -- This column is used to store the current state of the game for a particular user. This could include various aspects of the game state such as inventory items, current health, progress, and any other dynamic data that changes as the player progresses through the game.
     last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Items: Stores information about items that can be acquired in the game.
+CREATE TABLE items (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL
+);
+
+-- GameStates_Items: Junction table to manage the many-to-many relationship between game_states and items.
+CREATE TABLE game_states_items (
+    game_state_id INTEGER REFERENCES game_states(id) ON DELETE CASCADE,
+    item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+    PRIMARY KEY (game_state_id, item_id)
 );

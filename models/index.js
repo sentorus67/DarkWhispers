@@ -1,40 +1,40 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
-const db = {};
-
-// Import models
-db.User = require('./user');
-db.Game = require('./game');
-db.Scenario = require('./scenario');
-db.GameState = require('./gameState');
+const User = require('./User');
+const Game = require('./Game');
+const Scenario = require('./Scenario');
+const GameState = require('./GameState');
+const Item = require('./Item');
 
 // Create associations
-db.User.hasMany(db.GameState, {
-    foreignKey: 'user_id'
+User.hasMany(GameState, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
 });
 
-db.GameState.belongsTo(db.User, {
-    foreignKey: 'user_id'
+Scenario.hasMany(GameState, {
+  foreignKey: 'current_scenario_id',
+  onDelete: 'CASCADE',
 });
 
-db.Game.hasMany(db.Scenario, {
-    foreignKey: 'game_id'
+Game.hasMany(Scenario, {
+  foreignKey: 'game_id',
+  onDelete: 'CASCADE',
 });
 
-db.Scenario.belongsTo(db.Game, {
-    foreignKey: 'game_id'
-});
+GameState.belongsTo(User, { foreignKey: 'user_id' });
+GameState.belongsTo(Scenario, { foreignKey: 'current_scenario_id' });
+Scenario.belongsTo(Game, { foreignKey: 'game_id' });
 
-db.Scenario.hasMany(db.GameState, {
-    foreignKey: 'current_scenario_id'
-});
-
-db.GameState.belongsTo(db.Scenario, {
-    foreignKey: 'current_scenario_id'
-});
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+const db = {
+  User,
+  Game,
+  Scenario,
+  GameState,
+  Item,
+  sequelize,  // Sequelize instance
+  Sequelize,  // Sequelize class
+};
 
 module.exports = db;
