@@ -10,14 +10,29 @@ db.Scenario = require('./scenario');
 db.GameState = require('./gameState');
 
 // Create associations
-db.User.hasMany(db.GameState, { foreignKey: 'user_id' });
-db.GameState.belongsTo(db.User, { foreignKey: 'user_id' });
+db.User.hasMany(db.GameState, {
+    foreignKey: 'user_id'
+});
 
-db.Game.hasMany(db.Scenario, { foreignKey: 'game_id' });
-db.Scenario.belongsTo(db.Game, { foreignKey: 'game_id' });
+db.GameState.belongsTo(db.User, {
+    foreignKey: 'user_id'
+});
 
-db.Scenario.hasMany(db.GameState, { foreignKey: 'current_scenario_id' });
-db.GameState.belongsTo(db.Scenario, { foreignKey: 'current_scenario_id' });
+db.Game.hasMany(db.Scenario, {
+    foreignKey: 'game_id'
+});
+
+db.Scenario.belongsTo(db.Game, {
+    foreignKey: 'game_id'
+});
+
+db.Scenario.hasMany(db.GameState, {
+    foreignKey: 'current_scenario_id'
+});
+
+db.GameState.belongsTo(db.Scenario, {
+    foreignKey: 'current_scenario_id'
+});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
