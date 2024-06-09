@@ -38,6 +38,7 @@ Scenario.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'scenario',
+    tableName: 'scenarios',
   }
 );
 

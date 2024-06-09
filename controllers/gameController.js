@@ -4,13 +4,19 @@ const { Scenario, GameState } = require('../models');
 const getCurrentScenario = async (req, res) => {
   try {
     const userId = req.session.userId;
-    const gameState = await GameState.findOne({ where: { user_id: userId } });
-    
+    const gameState = await GameState.findOne(
+      {
+        where: {
+          user_id: userId
+        }
+      });
+
     if (!gameState) {
       return res.status(404).json({ message: 'Game state not found' });
     }
 
     const scenario = await Scenario.findByPk(gameState.current_scenario_id);
+
     res.json({ scenario, gameState });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -23,7 +29,13 @@ const updateGameState = async (req, res) => {
     const userId = req.session.userId;
     const { choiceId } = req.body;
 
-    const gameState = await GameState.findOne({ where: { user_id: userId } });
+    const gameState = await GameState.findOne(
+      {
+        where: {
+          user_id: userId
+        }
+      });
+
     const currentScenario = await Scenario.findByPk(gameState.current_scenario_id);
 
     const choice = currentScenario.choices.find(choice => choice.choice_id === choiceId);

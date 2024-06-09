@@ -33,6 +33,22 @@ User.init(
         isEmail: true,
       },
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'user', // Default role is 'user', set 'admin' for admin users
+    },
+    // status: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // gameId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'game',
+    //     key: 'id',
+    //   },
+    // },
   },
   {
     hooks: {
