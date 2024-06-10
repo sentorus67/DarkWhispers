@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/index'); // Ensure this path is correct
-// const authRoutes = require('./controllers/authRoutes');
+const authRoutes = require('./controllers/authRoutes');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -11,7 +11,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-Configure session and cookies
+//Configure session and cookies
+
 const sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
