@@ -1,11 +1,9 @@
 const router = require('express').Router();
-const { Game } = require('../../models');
 const gameController = require('../../controllers/gameController');
+const ensureUser = require('../../middleware/authMiddleware');
 
-// GET current scenario for a user
-router.get('/scenario', gameController.getCurrentScenario);
+// GET current scenario for a authenticated user
+router.get('/scenario', ensureUser, gameController.getCurrentScenario);
 
-// POST update game state based on user choice
-router.post('/scenario', gameController.updateGameState);
 
 module.exports = router;

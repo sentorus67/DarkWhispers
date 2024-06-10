@@ -23,9 +23,17 @@ Game.hasMany(Scenario, {
   onDelete: 'CASCADE',
 });
 
-GameState.belongsTo(User, { foreignKey: 'user_id' });
-GameState.belongsTo(Scenario, { foreignKey: 'current_scenario_id' });
-Scenario.belongsTo(Game, { foreignKey: 'game_id' });
+GameState.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+GameState.belongsTo(Scenario, {
+  foreignKey: 'current_scenario_id'
+});
+
+Scenario.belongsTo(Game, {
+  foreignKey: 'game_id'
+});
 
 const db = {
   User,
