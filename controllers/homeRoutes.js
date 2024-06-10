@@ -67,6 +67,28 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
   }
 });
 
+router.get('/scenario/:id', async (req,res) =>{
+  try{
+    const scenarioData= await Scenario.findByPk(req.params.id);
+    const scene= scenarioData.get({plain: true});
+
+    const sceneChoices= JSON.parse(scene.choices);
+
+
+
+    res.render('./partials/scenario',{
+      loggedIn: true,
+      nowPlaying: true,
+      scene,
+      sceneChoices
+    });
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 //Render admin page
 router.get('/admin', /**withAuth*/ async (req, res) => {
     try {
@@ -85,7 +107,9 @@ router.get('/admin', /**withAuth*/ async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+});
+
+
   
 
 module.exports = router;
