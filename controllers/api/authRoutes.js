@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const userController = require('../../controllers/userController');
 
-// Define your auth routes here
+// Route: api/auth/
+
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);

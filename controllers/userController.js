@@ -25,6 +25,7 @@ const createAdminUser = async () => {
 
 createAdminUser();
 
+
 exports.register = async (req, res) => {
   try {
     const { username, password, email } = req.body;
@@ -54,7 +55,8 @@ exports.register = async (req, res) => {
       req.session.loggedIn = true;
 
       console.log('User created and session saved:', newUser);
-      res.status(200).json(newUser);
+      res.redirect('/bypass');
+      // res.status(200).json(newUser);
     });
   } catch (err) {
     // Log the error
@@ -65,10 +67,10 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     // Check if the user exists
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { email } });
     if (!user) return res.status(400).send('User does not exist');
 
     // Check if the password is correct
@@ -89,13 +91,15 @@ exports.login = async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.status(200).json({ message: 'Login successful', redirectUrl: '/game' });
+      
+      console.log('Signed in.', user);
+      res.redirect('/bypass');
+      // res.status(200).json({ message: 'Login successful', redirectUrl: '/game/scenario' });
     });
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
-
 
 exports.logout = (req, res) => {
   req.session.destroy(err => {
