@@ -29,7 +29,7 @@ const sess = {
 
 app.use(session(sess));
 
-// Set up Handlebars.js as the template engine
+// Set up Handlebars.js as the template engine test 
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
