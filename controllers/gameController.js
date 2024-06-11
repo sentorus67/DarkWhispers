@@ -4,12 +4,9 @@ const { Scenario, GameState } = require('../models');
 const getCurrentScenario = async (req, res) => {
   try {
     const userId = req.session.userId;
-    const gameState = await GameState.findOne(
-      {
-        where: {
-          user_id: userId
-        }
-      });
+    const gameState = await GameState.findOne({
+      where: { user_id: userId },
+    });
 
     if (!gameState) {
       return res.status(404).json({ message: 'Game state not found' });
@@ -29,16 +26,13 @@ const updateGameState = async (req, res) => {
     const userId = req.session.userId;
     const { choiceId } = req.body;
 
-    const gameState = await GameState.findOne(
-      {
-        where: {
-          user_id: userId
-        }
-      });
+    const gameState = await GameState.findOne({
+      where: { user_id: userId },
+    });
 
     const currentScenario = await Scenario.findByPk(gameState.current_scenario_id);
 
-    const choice = currentScenario.choices.find(choice => choice.choice_id === choiceId);
+    const choice = currentScenario.choices.find((choice) => choice.choice_id === choiceId);
 
     if (!choice) {
       return res.status(400).json({ message: 'Invalid choice' });
@@ -61,28 +55,16 @@ const updateGameState = async (req, res) => {
   }
 };
 
+const renderGamePage = (req, res) => {
+  if (req.session.loggedIn) {
+    res.render('../partials/game'); // Render your game page template here
+  } else {
+    res.redirect('/login'); // Redirect to login if not logged in
+  }
+};
+
 module.exports = {
   getCurrentScenario,
   updateGameState,
+  renderGamePage,
 };
-
-// =========================================
-// // GET all games
-// router.get('/', async (req, res) => {
-//   try {
-//     const gameData = await Game.findAll();
-//     res.status(200).json(gameData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// // POST a new game
-// router.post('/', async (req, res) => {
-//   try {
-//     const newGame = await Game.create(req.body);
-//     res.status(200).json(newGame);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
