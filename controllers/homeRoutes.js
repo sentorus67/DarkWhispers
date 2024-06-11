@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Game, Scenario, User } = require('../models');
+const { Game, Scenario, User, Adventurer } = require('../models');
 const withAuth = require('../utils/auth')
 const ensureAdmin = require('../middleware/adminMiddleware')
 
@@ -40,6 +40,7 @@ router.get('/register', async (req, res) => {
       res.redirect('/game');
       return;
     }
+    
     res.render('./partials/register');
   } catch (err) {
     res.status(500).json(err);
@@ -65,7 +66,7 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
       return;
     }
 
-    res.render('./partials/scenario');
+    // res.render('./partials/scenario');
 
   } catch (err) {
     res.status(500).json(err);
@@ -74,8 +75,7 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
 
 router.get('/scenario', async (req, res) => {
   try {
-    const scenarios = await Scenario.findAll();
-    res.status(200).json(scenarios);
+    res.render('./partials/scenario');
   } catch (err) {
     console.error('Error fetching scenarios:', err);
     res.status(200).json({ error: 'Failed to fetch scenarios' });
