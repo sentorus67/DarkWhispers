@@ -10,9 +10,23 @@
   [![Insomnia](https://img.shields.io/badge/Insomnia-4000BF?logo=insomnia&logoColor=white)](https://insomnia.rest/)
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cnm724/SVG-Logo-Creator?color=B200FF)
   ![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
+  ![Static Badge](https://img.shields.io/badge/bcrypt.js-blue?color=maroon)
 
   
 </div>
+
+## Table of Contents (Optional)
+
+If your README is long, add a table of contents to make it easy for users to find what they need.
+
+- [Description](#description)
+- [Live-URL](#live-url)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Technologies-Used](#technologies-used)
+- [Credits](#credits)
+- [License](#license)
+
 
 ## Description
 
@@ -23,28 +37,34 @@ Provide a short description explaining the what, why, and how of your project. U
 - What problem does it solve?
 - What did you learn?
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+## Live URL
+https://darkwhispers.onrender.com/  
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+1. Clone the repository: https://github.com/sentorus67/DarkWhispers.git
+2. Install or open VS Code.
+3. Install the dependencies: 'npm install' in the integrated terminal.
+4. Set up the environmental variables by creating a new  '.env' file and add the following:
 
-## Usage
+- DB_NAME=your_database_name
+- DB_USER=your_database_user
+- DB_PASSWORD=your_database_password
+- DB_HOST=your_database_host
+- SESSION_SECRET=your_session_secret
+- JWT_SECRET=your_jwt_secret
 
-Provide instructions and examples for use. Include screenshots as needed.
+5. Set up the database: 'npm run db:reset'.
+6. Seed teh database: 'npm run seed'.
+7. Start the server: 'npm start', open your browser and navigate to 'http://localhost:3001'.
+8. Navigate through the game!
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+## Screenshots
+
+## Technologies Used
+
+This application is powered by Node.js (v.20.14.0), Express.js (v.4.19.2), JavaScript, MySQL, Sequelize (ORM), brcyptjs (v.5.2.1), bcryptjs (v.2.4.3), crypto (v.1.0.1) jsonwebtoken (v.9.0.2) and Handlebars (template engine). It utilizes the node package manager (npm) dependencies sequelize (v6.1.1), mysql2 (v3.3.0), express (v4.18.2), dotenv (v16.0.3), bcrypt (v.5.1.0) and JSON Web Tokens(JWT) for authentication, Bulma (CSS franework) (v0.9.4), express-handlebars (v7.1.2), and express-session (v1.18.0). Also, the application Insomnia was utilized to test the functionality of routes within the program.
 
 ## Credits
 
