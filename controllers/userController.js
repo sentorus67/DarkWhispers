@@ -67,10 +67,10 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     // Check if the user exists
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { username } });
     if (!user) return res.status(400).send('User does not exist');
 
     // Check if the password is correct
@@ -79,11 +79,6 @@ exports.login = async (req, res) => {
 
     // Create and assign a token
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-    //     Purpose of the JWT Token
-    // JWT tokens are commonly used for secure transmission of information between parties. In this context, the JWT token serves several purposes:
-    // Authentication: Once the user is authenticated (e.g., after logging in), the server generates a JWT and sends it to the client. The client then includes this token in subsequent requests to access protected resources.
-    // Stateless Sessions: JWT allows for stateless authentication. Instead of storing session data on the server, the token contains all the necessary information (e.g., user ID) and can be verified using the secret key.
-    // Security: JWT tokens are signed to prevent tampering. If someone tries to alter the token, the signature verification will fail, and the token will be rejected. Overall, JWT provides a secure and scalable way to handle user authentication in web applications.
 
     req.session.save(() => {
       req.session.token = token;
