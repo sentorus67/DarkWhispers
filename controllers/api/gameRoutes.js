@@ -1,11 +1,10 @@
-const router = require('express').Router();
-const { Game } = require('../../models');
+const express = require('express');
+const router = express.Router();
 const gameController = require('../../controllers/gameController');
 
-// GET current scenario for a user
-router.get('/scenario', gameController.getCurrentScenario);
-
-// POST update game state based on user choice
-router.post('/scenario', gameController.updateGameState);
+// Ensure the controller functions are correctly defined
+router.get('/current-scenario', gameController.getCurrentScenario);
+router.post('/update-game-state', gameController.updateGameState);
+router.get('/', gameController.renderGamePage);
 
 module.exports = router;

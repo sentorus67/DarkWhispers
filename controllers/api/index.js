@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const express = require('express');
+
 
 const authRoutes = require('./authRoutes');
 const gameRoutes = require('./gameRoutes');

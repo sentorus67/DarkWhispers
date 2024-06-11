@@ -1,18 +1,15 @@
-const path = require('path');
 const express = require('express');
+const path = require('path');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers/index'); // Ensure this path is correct
-const authRoutes = require('./controllers/authRoutes');
-
+const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//Configure session and cookies
-
+// Configure session and cookies
 const sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
@@ -33,6 +30,7 @@ app.use(session(sess));
 // Set up Handlebars.js as the template engine
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
