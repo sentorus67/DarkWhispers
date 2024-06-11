@@ -6,7 +6,7 @@ const ensureAdmin = require('../../middleware/adminMiddleware');
 // router.use(ensureAdmin);
 
 // Route: /api/admin/
-// router.get('/users', scenarioController.getAllScenarios);
+
 router.post('/create', scenarioController.createScenario);
 router.put('/update/:id', scenarioController.updateScenario);
 router.delete('/delete/:id', scenarioController.deleteScenario);
