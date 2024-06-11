@@ -3,7 +3,7 @@ const seedUsers = require('./userSeed');
 const seedGames = require('./gameSeed');
 const seedScenarios = require('./scenarioSeed');
 const seedGameStates = require('./gameStateSeed');
-const seedItems = require('./itemSeed');
+const seedAdventurers = require('./adventurerSeed');
 
 const seedAll = async () => {
   try {
@@ -19,8 +19,8 @@ const seedAll = async () => {
     await seedScenarios();
     console.log('Scenarios seeded');
 
-    await seedItems();
-    console.log('Items seeded');
+    await seedAdventurers();
+    console.log('Adventurers seeded');
 
     await seedGameStates();
     console.log('Game States seeded');

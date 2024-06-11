@@ -5,7 +5,7 @@ const User = require('./user');
 const Game = require('./Game');
 const Scenario = require('./scenario');
 const GameState = require('./gameState');
-const Item = require('./item');
+const Item = require('./Adventurer');
 
 // Create associations
 User.hasMany(GameState, {
