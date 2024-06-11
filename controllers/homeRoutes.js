@@ -14,7 +14,6 @@ router.get('/', async (req, res) => {
       games: games.map(game => game.get({ plain: true })),
 
     });
-
   } catch (err) {
     res.status(500).json(err);
   }
@@ -95,14 +94,15 @@ router.get('/scenario/:id', async (req, res) => {
       loggedIn: true,
       nowPlaying: true,
       scene,
-      sceneChoices
+      sceneChoices,
+      layout: 'main'  // Handlebars
     });
   }
   catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-})
+});
 
 //Render admin page
 router.get('/admin', /**ensureAdmin,*/ async (req, res) => {
