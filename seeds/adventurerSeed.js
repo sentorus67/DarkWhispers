@@ -2,7 +2,7 @@ const { Adventurer, Scenario, Game } = require('../models');
 
 const adventurerData = [
   { 
-    user_id: 5,
+    user_id: 1,
     game_id:1,
     scenario_id:1,
     name: 'Torbjorn',
@@ -11,8 +11,8 @@ const adventurerData = [
     hasKeyItem3:false,
   },
   { 
-    user_id: 5,
-    game_id:1,
+    user_id: 3,
+    game_id:2,
     scenario_id:1,
     name: 'Mikaelis',
     hasKeyItem1:false,
@@ -20,8 +20,8 @@ const adventurerData = [
     hasKeyItem3:false,
   },
   { 
-    user_id: 5,
-    game_id:1,
+    user_id: 4,
+    game_id:3,
     scenario_id:1,
     name: 'Reginald',
     hasKeyItem1:false,
