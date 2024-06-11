@@ -55,7 +55,8 @@ exports.register = async (req, res) => {
       req.session.loggedIn = true;
 
       console.log('User created and session saved:', newUser);
-      res.status(200).json(newUser);
+      res.redirect('/bypass');
+      // res.status(200).json(newUser);
     });
   } catch (err) {
     // Log the error
@@ -90,13 +91,15 @@ exports.login = async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.status(200).json({ message: 'Login successful', redirectUrl: '/game/scenario' });
+      
+      console.log('Signed in.', user);
+      res.redirect('/bypass');
+      // res.status(200).json({ message: 'Login successful', redirectUrl: '/game/scenario' });
     });
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
-
 
 exports.logout = (req, res) => {
   req.session.destroy(err => {

@@ -1,16 +1,4 @@
 const { Scenario } = require('../models');
-
-// Get all scenarios
-exports.getAllScenarios = async (req, res) => {
-  try {
-    const scenarios = await Scenario.findAll();
-    res.status(200).json(scenarios);
-  } catch (err) {
-    console.error('Error fetching scenarios:', err);
-    res.status(500).json({ error: 'Failed to fetch scenarios' });
-  }
-};
-
 // Get a single scenario by ID
 exports.getScenarioById = async (req, res) => {
   try {

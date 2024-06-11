@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace(data.redirectUrl);
+        document.location.replace('/game');
       } else {
         alert('Failed to log in.');
       }
@@ -34,7 +34,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace(data.redirectUrl);
+        document.location.replace('/game');
       } else {
         alert('Failed to sign up.');
       }

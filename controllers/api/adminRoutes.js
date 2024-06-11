@@ -5,8 +5,8 @@ const ensureAdmin = require('../../middleware/adminMiddleware');
 // Protect all admin routes with ensureAdmin middleware
 // router.use(ensureAdmin);
 
-// Define your admin routes here
-router.post('/view', scenarioController.getAllScenarios);
+// Route: /api/admin/
+// router.get('/users', scenarioController.getAllScenarios);
 router.post('/create', scenarioController.createScenario);
 router.put('/update/:id', scenarioController.updateScenario);
 router.delete('/delete/:id', scenarioController.deleteScenario);
