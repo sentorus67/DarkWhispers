@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { Game, Scenario, User, Adventurer } = require('../models');
 const withAuth = require('../utils/auth')
-const ensureAdmin = require('../middleware/adminMiddleware')
+const ensureAdmin = require('../middleware/adminMiddleware');
+const { FLOAT } = require('sequelize');
 
 // Render homepage
 router.get('/', async (req, res) => {
@@ -74,9 +75,16 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
 });
 
 
-router.get('/newGame', async (req, res) => {
+router.get('/newGame/:id', async (req, res) => {
   try {
-    const adventure= await Adventurer.findByPk
+    // const adventurerData= await Adventurer.findByPk(req.params.id);
+    const newAdventure=await Adventurer.update(
+      {hasKeyItem1: false, hasKeyItem2: false,hasKeyItem3: false}, 
+      {where: {game_id: req.params.id}},
+    );
+   
+    // const adventurer= adventurerData.get({ plain: true });
+
     res.render('./partials/scenario');
   } catch (err) {
     console.error('Error fetching scenarios:', err);
@@ -111,21 +119,95 @@ router.get('/continue/:id', async(req,res)=>{
 
 router.get('/scenario/:id', async (req, res) => {
   try {
+    let scenarioData;
+    if((req.params.id).includes('.')){
+      //this logic trigger if the scenario_id has a decimal. Indicating it has abrnaching path.
+      branch= req.params.id;
+   
+      keyItemCheck=parseInt(branch.substring(branch.indexOf('.')+1,((branch.indexOf('.'))+2)));
 
-    const scenarioData = await Scenario.findByPk(req.params.id);
-    const scene = scenarioData.get({ plain: true });
+      branchPath1= parseInt(branch.substring(0,branch.indexOf('.')));
+      branchPath2= parseInt(branch.substring((branch.indexOf('.'))+2));
 
+      scenarioData= await Scenario.findByPk(branchPath1);
+      let scene = scenarioData.get({ plain: true });
+
+      const adventurerData= await Adventurer.findOne({
+        where: {user_id: scene.game_id}
+      });
+
+      const adventurer= adventurerData.get({ plain: true });
+
+      //this checks if the value of key item exists.
+      switch(keyItemCheck){
+        case 1:
+          if(adventurer.hasKeyItem1==true){
+            scenarioData = await Scenario.findByPk(branchPath2);
+          };
+          break;
+        case 2:
+          if(adventurer.hasKeyItem2==true){
+            scenarioData = await Scenario.findByPk(branchPath2);
+          }
+        break;
+
+        case 3:
+          if(adventurer.hasKeyItem3==true){
+            scenarioData = await Scenario.findByPk(branchPath2);
+          }
+        break;
+      }
+    }
+    else{
+     scenarioData = await Scenario.findByPk(req.params.id);
+    }
+
+    scene = scenarioData.get({ plain: true });
+    
+    if(scene.key_item != null){
+  
+      console.log('A key item is present adding it to adveturer');
+      // const adventurerData= await Adventurer.findOne({
+      //   where: {user_id: scene.game_id}
+      // });
+      let adventurerKeyItem;
+      obtainKeyItem=parseInt(scene.key_item);
+      switch(obtainKeyItem){
+
+        case 1:
+           adventurerKeyItem = await Adventurer.update(
+            {hasKeyItem1: true},
+            {where: {game_id: scene.game_id}},
+          );
+        break;
+          
+        case 2:
+           adventurerKeyItem = await Adventurer.update(
+            {hasKeyItem2: true},
+            {where: {game_id: scene.game_id}},
+          );
+        break;
+
+        case 3:
+           adventurerKeyItem = await Adventurer.update(
+          {hasKeyItem3: true},
+          {where: {game_id: scene.game_id}},
+           );
+        break;
+      }
+      const adventurerData= await Adventurer.findOne({
+        where: {user_id: scene.game_id}
+      });
+      const adventurer= adventurerData.get({ plain: true });
+
+      // console.log(`adventurer should now have a key item: this is ${adventurer.hasKeyItem1}`);
+     
+    }
     const sceneChoices = JSON.parse(scene.choices);
-
-    const adventurerUpdate= await Adventurer.update(
-      {scenario_id: req.params.id},
+     await Adventurer.update(
+      {scenario_id: scene.id},
       {where: {game_id: scene.game_id }},
-    );
-
-    const adventurerData= await Adventurer.findOne({
-      where: {user_id: scene.game_id}
-    });
-
+      );
     res.render('./partials/scenario', {
       loggedIn: true,
       nowPlaying: true,
@@ -133,6 +215,7 @@ router.get('/scenario/:id', async (req, res) => {
       sceneChoices,
       layout: 'main'  // Handlebars
     });
+
   }
   catch (err) {
     console.log(err);
