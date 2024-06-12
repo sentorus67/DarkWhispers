@@ -7,43 +7,49 @@ const jwt = require('jsonwebtoken');
 // Route: api/auth/
 
 router.post('/register', async (req, res) => {
-    try {
-      const { username, password, email } = req.body;
-  
-      // Log received data
-      console.log('Received data:', { username, password, email });
-  
-      // Check if the user already exists
-      const existingUser = await User.findOne({ where: { email } });
-      if (existingUser) {
-        return res.status(400).json({ error: 'Email already in use' });
-      }
-  
-      // Hash the password before saving it to the database
-      const hashedPassword = await bcrypt.hash(password, 10);
-      console.log('Hashed password:', hashedPassword);
-  
-      const newUser = await User.create({
-        username,
-        email,
-        password: hashedPassword,
-      });
-  
-      req.session.save(() => {
-        req.session.userId = newUser.id;
-        req.session.username = newUser.username;
-        req.session.loggedIn = true;
-  
-        console.log('User created and session saved:', newUser);
-        res.redirect('/bypass');
-        // res.status(200).json(newUser);
-      });
-    } catch (err) {
-      // Log the error
-      console.error('Error during sign-up:', err);
-      res.status(500).json({ error: err.message });
+  try {
+    const { username, password, email } = req.body;
+
+    // Log received data
+    console.log('Received registration data:', { username, password, email });
+
+    // Check if the email already exists
+    const existingUserByEmail = await User.findOne({ where: { email } });
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email already in use' });
     }
-  });
+
+    // Check if the username already exists
+    const existingUserByUsername = await User.findOne({ where: { username } });
+    if (existingUserByUsername) {
+      return res.status(400).json({ error: 'Username already in use' });
+    }
+
+    // Hash the password before saving it to the database
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Hashed password:', hashedPassword);
+
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    req.session.save(() => {
+      req.session.userId = newUser.id;
+      req.session.username = newUser.username;
+      req.session.loggedIn = true;
+
+      console.log('User created and session saved:', newUser);
+      res.redirect('/bypass');
+      // res.status(200).json(newUser);
+    });
+  } catch (err) {
+    // Log the error
+    console.error('Error during registration:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
   
 router.post('/login', async (req, res) => {
     try {
@@ -59,11 +65,6 @@ router.post('/login', async (req, res) => {
   
       // Create and assign a token
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-      //     Purpose of the JWT Token
-      // JWT tokens are commonly used for secure transmission of information between parties. In this context, the JWT token serves several purposes:
-      // Authentication: Once the user is authenticated (e.g., after logging in), the server generates a JWT and sends it to the client. The client then includes this token in subsequent requests to access protected resources.
-      // Stateless Sessions: JWT allows for stateless authentication. Instead of storing session data on the server, the token contains all the necessary information (e.g., user ID) and can be verified using the secret key.
-      // Security: JWT tokens are signed to prevent tampering. If someone tries to alter the token, the signature verification will fail, and the token will be rejected. Overall, JWT provides a secure and scalable way to handle user authentication in web applications.
   
       req.session.save(() => {
         req.session.token = token;
