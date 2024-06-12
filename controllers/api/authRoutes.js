@@ -7,43 +7,49 @@ const jwt = require('jsonwebtoken');
 // Route: api/auth/
 
 router.post('/register', async (req, res) => {
-    try {
-      const { username, password, email } = req.body;
-  
-      // Log received data
-      console.log('Received data:', { username, password, email });
-  
-      // Check if the user already exists
-      const existingUser = await User.findOne({ where: { email } });
-      if (existingUser) {
-        return res.status(400).json({ error: 'Email already in use' });
-      }
-  
-      // Hash the password before saving it to the database
-      const hashedPassword = await bcrypt.hash(password, 10);
-      console.log('Hashed password:', hashedPassword);
-  
-      const newUser = await User.create({
-        username,
-        email,
-        password: hashedPassword,
-      });
-  
-      req.session.save(() => {
-        req.session.userId = newUser.id;
-        req.session.username = newUser.username;
-        req.session.loggedIn = true;
-  
-        console.log('User created and session saved:', newUser);
-        res.redirect('/bypass');
-        // res.status(200).json(newUser);
-      });
-    } catch (err) {
-      // Log the error
-      console.error('Error during sign-up:', err);
-      res.status(500).json({ error: err.message });
+  try {
+    const { username, password, email } = req.body;
+
+    // Log received data
+    console.log('Received registration data:', { username, password, email });
+
+    // Check if the email already exists
+    const existingUserByEmail = await User.findOne({ where: { email } });
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: 'Email already in use' });
     }
-  });
+
+    // Check if the username already exists
+    const existingUserByUsername = await User.findOne({ where: { username } });
+    if (existingUserByUsername) {
+      return res.status(400).json({ error: 'Username already in use' });
+    }
+
+    // Hash the password before saving it to the database
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Hashed password:', hashedPassword);
+
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    req.session.save(() => {
+      req.session.userId = newUser.id;
+      req.session.username = newUser.username;
+      req.session.loggedIn = true;
+
+      console.log('User created and session saved:', newUser);
+      res.redirect('/bypass');
+      // res.status(200).json(newUser);
+    });
+  } catch (err) {
+    // Log the error
+    console.error('Error during registration:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
   
 router.post('/login', async (req, res) => {
     try {
