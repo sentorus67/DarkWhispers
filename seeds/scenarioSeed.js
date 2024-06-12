@@ -3,8 +3,7 @@ const { Scenario } = require('../models');
 
 
 const scenarioData = [
-  {
-    id: 1, // Manually set ID for testing
+  {// Manually set ID for testing
     game_id: 1, // Assuming Dark Whispers has ID 1
     title: 'The Beginning',
     description: 'You find yourself in a dark forest. Paths lead north and east.',
@@ -21,8 +20,7 @@ const scenarioData = [
       },
     ],
   },
-  {
-    id: 2, // Manually set ID for testing
+  {// Manually set ID for testing
     game_id: 1,
     title: 'The Northern Path',
     description: 'The path leads to a small village.',
@@ -39,8 +37,7 @@ const scenarioData = [
       },
     ],
   },
-  {
-    id: 3, // Manually set ID for testing
+  { // Manually set ID for testing
     game_id: 1,
     title: 'The Eastern Path',
     description: 'The path leads to a river.',

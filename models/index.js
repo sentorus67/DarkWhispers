@@ -6,6 +6,7 @@ const Game = require('./Game');
 const Scenario = require('./scenario');
 const GameState = require('./gameState');
 const Item = require('./Adventurer');
+const Adventurer = require('./Adventurer');
 
 // Create associations
 User.hasMany(GameState, {
@@ -35,12 +36,30 @@ Scenario.belongsTo(Game, {
   foreignKey: 'game_id'
 });
 
+// Adventurer.belongsTo(User, {
+//   foreignKey: 'user_id'
+// });
+
+// Adventurer.belongsTo(Game, {
+//   foreignKey: 'game_id'
+// });
+
+// Adventurer.belongsTo(Scenario, {
+//   foreignKey: 'scenario_id',
+//   onDelete: 'CASCADE'
+// });
+
+// Scenario.hasMany(Adventurer,{
+//   foreignKey: 'scenario_id',
+//   onDelete: 'CASCADE'
+// });
+
 const db = {
   User,
   Game,
   Scenario,
   GameState,
-  Item,
+  Adventurer,
   sequelize,  // Sequelize instance
   Sequelize,  // Sequelize class
 };
