@@ -47,12 +47,12 @@ CREATE TABLE game_states (
     last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
--- Items: Stores information about items that can be acquired in the game.
-CREATE TABLE items (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL
-);
+-- -- Items: Stores information about items that can be acquired in the game.
+-- CREATE TABLE adventurer (
+--     id SERIAL PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL,
+--     description TEXT NOT NULL,
+-- );
 
 -- GameStates_Items: Junction table to manage the many-to-many relationship between game_states and items.
 CREATE TABLE game_states_items (
