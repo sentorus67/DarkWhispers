@@ -66,7 +66,7 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
       return;
     }
 
-    // res.render('./partials/scenario');
+    res.render('./partials/scenario');
 
   } catch (err) {
     res.status(500).json(err);
