@@ -36,23 +36,7 @@ Scenario.belongsTo(Game, {
   foreignKey: 'game_id'
 });
 
-// Adventurer.belongsTo(User, {
-//   foreignKey: 'user_id'
-// });
 
-// Adventurer.belongsTo(Game, {
-//   foreignKey: 'game_id'
-// });
-
-// Adventurer.belongsTo(Scenario, {
-//   foreignKey: 'scenario_id',
-//   onDelete: 'CASCADE'
-// });
-
-// Scenario.hasMany(Adventurer,{
-//   foreignKey: 'scenario_id',
-//   onDelete: 'CASCADE'
-// });
 
 const db = {
   User,
