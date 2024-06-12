@@ -13,7 +13,7 @@ const signupFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/game');
       } else {
         const error = await response.json();
         console.error('Failed to sign up:', error);

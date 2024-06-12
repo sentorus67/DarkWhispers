@@ -37,7 +37,7 @@ const sess = {
   }),
 };
 
-// app.use(session(sess));
+app.use(session(sess));
 
 // Set up Handlebars.js as the template engine test 
 app.engine('handlebars', exphbs.engine());
