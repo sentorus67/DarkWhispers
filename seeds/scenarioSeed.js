@@ -1,26 +1,5 @@
 const { Scenario } = require('../models');
 
-
-//   {
-//     game_id: 1,
-//     title: '',
-//     description: '',
-//     choices: [
-//       {
-//         choice_id: 1,
-//         description: '',
-//         next_scenario_id: 
-//       },
-//       {
-//         choice_id: 2,
-//         description: '',
-//         next_scenario_id: 
-
-//       },
-//     ],
-//  }
-
-
 const scenarioData = [
   {// 1 Manually set ID for testing
    

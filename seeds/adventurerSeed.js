@@ -11,8 +11,8 @@ const adventurerData = [
     hasKeyItem3:false,
   },
   { 
-    user_id: 3,
-    game_id:2,
+    user_id: 2,
+    game_id:1,
     scenario_id:1,
     name: 'Mikaelis',
     hasKeyItem1:false,
@@ -20,8 +20,8 @@ const adventurerData = [
     hasKeyItem3:false,
   },
   { 
-    user_id: 4,
-    game_id:3,
+    user_id: 3,
+    game_id:1,
     scenario_id:1,
     name: 'Reginald',
     hasKeyItem1:false,

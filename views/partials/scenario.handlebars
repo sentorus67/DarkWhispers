@@ -2,21 +2,21 @@
 
 {{#if nowPlaying}}
 <main>
-        
-    <div class="columns is-centered"> 
-         <section class="column is-two-thirds ">
+
+    <div class="columns is-centered">
+        <section class="column is-two-thirds ">
             <div class="box is-size-4" style="min-height: 300px;">
-              <div class="has-text-centered">
-                <h2>{{scene.title}}</h2>
-              </div>
-               {{scene.description}}
-               {{!-- {{scene.choices.length}} --}}
+                <div class="has-text-centered">
+                    <h2>{{scene.title}}</h2>
+                </div>
+                {{scene.description}}
+                {{!-- {{scene.choices.length}} --}}
             </div>
         </section>
     </div>
 
-    <div  class="columns is-centered my-2">
-      {{#each sceneChoices as |choice|}}
+    <div class="columns is-centered my-2">
+        {{#each sceneChoices as |choice|}}
         <a href="/scenario/{{next_scenario_id}}" class="button mx-2 is-size-5">{{description}}</a>
         {{/each}}
         <a href="/bypass" class="button mx-5 is-size-5 ">Exit Game</a>
@@ -26,22 +26,20 @@
 
 {{else}}
 <main>
-        
-    <div class="columns is-centered"> 
-         <section class="column is-two-thirds ">
+
+    <div class="columns is-centered">
+        <section class="column is-two-thirds ">
             <div class="box is-size-4" style="min-height: 300px;">
-                this will be the the main text that describes the current scenario. 
+                this will be the the main text that describes the current scenario.
                 By importing the scenario description it will fill this area.
             </div>
         </section>
     </div>
 
-    <div  class="columns is-centered my-2">
+    <div class="columns is-centered my-2">
         <a href="/scenario/1" class="button mx-2 is-size-5">begin</a>
         <a href="/bypass" class="button mx-5 is-size-5 ">Exit Game</a>
     </div>
 
 </main>
 {{/if}}
-
-
