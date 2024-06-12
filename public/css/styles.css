@@ -1,0 +1,36 @@
+/* Ensure the html and body take up the full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Style for the footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Example styling for the card */
+.card {
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100%;
+}
+
+/* Style for the main container */
+/* .container {
+    min-height: calc(100% - 60px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} */
+
+/* Add additional styles here */
+
+
