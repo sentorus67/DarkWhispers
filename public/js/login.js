@@ -12,6 +12,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
+        sessionStorage.setItem('resetLoginForm', 'true');
         document.location.replace('/game');
       } else {
         alert('Failed to log in.');
@@ -34,6 +35,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
+        sessionStorage.setItem('resetLoginForm', 'true');
         document.location.replace('/game');
       } else {
         alert('Failed to sign up.');

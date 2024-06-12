@@ -31,7 +31,7 @@ Adventurer.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'scenario',
+        model: 'scenarios',
         key: 'id'
       },
     },

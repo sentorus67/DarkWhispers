@@ -1,84 +1,70 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const dataForm = document.getElementById("data-submit-form");
+  const dataList = document.getElementById("data-list");
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const dataForm = document.getElementById("data-submit-form");
-    const dataList = document.getElementById("data-list");
+  // Store initial form state in sessionStorage
+  const formInitialState = dataForm.innerHTML;
+  sessionStorage.setItem('formInitialState', formInitialState);
 
-    // Handle form submission for create and update
-    dataForm.addEventListener("submit", function(event) {
+  // Check if the form should be reset
+  if (sessionStorage.getItem('resetForm') === 'true') {
+      dataForm.innerHTML = sessionStorage.getItem('formInitialState');
+      sessionStorage.setItem('resetForm', 'false');
+  }
+
+  // Handle form submission for create and update
+  dataForm.addEventListener("submit", function(event) {
       event.preventDefault();
 
       const formData = new FormData(dataForm);
-      const url = "{{#if editing}}/data/{{id}}{{/if}}/{{#if editing}}update{{else}}create{{/if}}";
-      const method = "{{#if editing}}PUT{{else}}POST{{/if}}";
+      const url = dataForm.dataset.editing === "true" ? `/data/${formData.get('id')}/update` : '/data/create';
+      const method = dataForm.dataset.editing === "true" ? "PUT" : "POST";
 
       fetch(url, {
-        method: method,
-        body: formData
+          method: method,
+          body: formData
       })
       .then(response => response.json())
       .then(data => {
-        // Update data list or handle success message
-        console.log("Data saved successfully:", data);
-        // Clear form and reload data list
-        dataForm.reset();
-        // Call function to fetch and update data list
-        updateDataList();
+          console.log("Data saved successfully:", data);
+          dataForm.reset();
+          sessionStorage.setItem('resetForm', 'false'); // Set flag to reset form
+          updateDataList();
       })
       .catch(error => {
-        console.error("Error saving data:", error);
-        // Display error message to user
+          console.error("Error saving data:", error);
       });
-    });
-
-    // Handle edit button click
-    dataList.addEventListener("click", function(event) {
-      if (event.target.classList.contains("edit-btn")) {
-        const dataId = event.target.dataset.id;
-        // Call function to fetch data by id and populate form
-        fetchData(dataId);
-      } else if (event.target.classList.contains("delete-btn")) {
-        const dataId = event.target.dataset.id;
-        // Call function to delete data by id and update data list
-        deleteData(dataId);
-      }
-    });
-
-    // Function to fetch data by id (for editing)
-    function fetchData(id) {
-      fetch(`/data/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("data-id").value = data.id;
-        document.getElementById("data-name").value = data.name;
-        // Set values for other form fields based on data structure
-        document.getElementById("editing").value = true; // Set editing flag
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        // Display error message to user
-      });
-    }
-
-    // Function to delete data by id
-    function deleteData(id) {
-      fetch(`/data/${id}`, {
-        method: "DELETE"
-      })
-      .then(response => {
-        // Update data list or handle success message
-        console.log("Data deleted successfully");
-        updateDataList();
-      })
-      .catch(error => {
-        console.error("Error deleting data:", error);
-        // Display error message to user
-      });
-    }
-
-    // Function to update data list (assuming you have a separate function to fetch data)
-    function updateDataList() {
-      // Fetch data and populate data list
-      // This function should be called on page load and after data is saved/deleted
-    }
-
   });
+
+  // Function to update data list
+  function updateDataList() {
+      const dataList = document.getElementById("data-list"); // Retrieve dataList again here
+      if (!dataList) {
+          console.error("Element with ID 'data-list' not found.");
+          return;
+      }
+      
+      fetch('/api/admin/users')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          dataList.innerHTML = ''; // Clear previous data
+          data.forEach(item => {
+              dataList.innerHTML += `<li>${item.name} - ${item.email}
+                  <button class="edit-btn" data-id="${item.id}">Edit</button>
+                  <button class="delete-btn" data-id="${item.id}">Delete</button>
+              </li>`;
+          });
+      })
+      .catch(error => {
+          console.error('Error updating data list:', error);
+      });
+  }
+
+  // Initial data list load
+  updateDataList();
+});
