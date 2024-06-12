@@ -62,6 +62,11 @@ https://darkwhispers.onrender.com/
 
 ## Screenshots
 
+![Login page](<assets/images/Screenshot 2024-06-11 at 8.00.48 PM.png>)
+
+![Start a new game or continue one](<assets/images/Screenshot 2024-06-11 at 8.01.38 PM.png>)
+
+![Start of a new game](<assets/images/Screenshot 2024-06-11 at 8.02.04 PM.png>)
 ## Technologies Used
 
 This application is powered by Node.js (v.20.14.0), Express.js (v.4.19.2), JavaScript, MySQL, Sequelize (ORM), brcyptjs (v.5.2.1), bcryptjs (v.2.4.3), crypto (v.1.0.1) jsonwebtoken (v.9.0.2) and Handlebars (template engine). It utilizes the node package manager (npm) dependencies sequelize (v6.1.1), mysql2 (v3.3.0), express (v4.18.2), dotenv (v16.0.3), bcrypt (v.5.1.0) and JSON Web Tokens(JWT) for authentication, Bulma (CSS franework) (v0.9.4), express-handlebars (v7.1.2), and express-session (v1.18.0). Also, the application Insomnia was utilized to test the functionality of routes within the program.
