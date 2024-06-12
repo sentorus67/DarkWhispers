@@ -189,4 +189,4 @@ This application is powered by Node.js (v.20.14.0), Express.js (v.4.19.2), JavaS
 
 ## Questions
 
-If you have any additional questions you can use the links to reach us through our github accounts listed in the credit section. 
+If you have any additional questions you can use the links to reach us through our github accounts listed in the credits section. 
