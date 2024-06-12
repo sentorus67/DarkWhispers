@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Game, Scenario, User, Adventurer } = require('../models');
+const { Game, Scenario, User, Adventurer } = require('../models');
 const withAuth = require('../utils/auth')
 const ensureAdmin = require('../middleware/adminMiddleware');
 const { FLOAT } = require('sequelize');
@@ -42,6 +43,7 @@ router.get('/register', async (req, res) => {
       return;
     }
     
+    
     res.render('./partials/register');
   } catch (err) {
     res.status(500).json(err);
@@ -67,7 +69,7 @@ router.get('/game', /**withAuth,*/ async (req, res) => {
       return;
     }
 
-    res.render('./partials/scenario');
+    // res.render('./partials/scenario');
 
   } catch (err) {
     res.status(500).json(err);
