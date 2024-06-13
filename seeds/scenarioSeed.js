@@ -263,7 +263,7 @@ const scenarioData = [
     {
       choice_id: 31,
       description: 'Victory',
-      next_scenario_id:15, 
+      next_scenario_id:16, 
     },
   ],
 },
