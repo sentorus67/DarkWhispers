@@ -2,34 +2,25 @@ const sequelize = require('../config/connection');
 const seedUsers = require('./userSeed');
 const seedGames = require('./gameSeed');
 const seedScenarios = require('./scenarioSeed');
-const seedGameStates = require('./gameStateSeed');
 const seedAdventurers = require('./adventurerSeed');
 
 const seedAll = async () => {
-  try {
-    await sequelize.sync({ force: true });
-    console.log('Database synced');
+  await sequelize.sync({ force: true });
+  console.log('Database synced');
 
-    await seedUsers();
-    console.log('Users seeded');
+  await seedUsers();
+  console.log('Users seeded');
 
-    await seedGames();
-    console.log('Games seeded');
+  await seedGames();
+  console.log('Games seeded');
 
-    await seedScenarios();
-    console.log('Scenarios seeded');
+  await seedScenarios();
+  console.log('Scenarios seeded');
 
-    await seedAdventurers();
-    console.log('Adventurers seeded');
+  await seedAdventurers();
+  console.log('Adventurers seeded');
 
-    await seedGameStates();
-    console.log('Game States seeded');
-
-    process.exit(0);
-  } catch (error) {
-    console.error('Error during seeding:', error);
-    process.exit(1);
-  }
+  process.exit(0);
 };
 
 seedAll();

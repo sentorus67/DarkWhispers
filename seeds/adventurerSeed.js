@@ -1,37 +1,37 @@
-const { Adventurer, Scenario, Game } = require('../models');
-
-const adventurerData = [
-  { 
-    user_id: 1,
-    game_id:1,
-    scenario_id:1,
-    name: 'Torbjorn',
-    hasKeyItem1:false,
-    hasKeyItem2:false,
-    hasKeyItem3:false,
-  },
-  { 
-    user_id: 2,
-    game_id:1,
-    scenario_id:1,
-    name: 'Mikaelis',
-    hasKeyItem1:false,
-    hasKeyItem2:false,
-    hasKeyItem3:false,
-  },
-  { 
-    user_id: 3,
-    game_id:1,
-    scenario_id:1,
-    name: 'Reginald',
-    hasKeyItem1:false,
-    hasKeyItem2:false,
-    hasKeyItem3:false,
-  },
-];
+const { Adventurer } = require('../models');
 
 const seedAdventurers = async () => {
-    await Adventurer.bulkCreate(adventurerData)
+  await Adventurer.bulkCreate([
+    {
+      user_id: 1,
+      game_id: 1,
+      scenario_id: 1,
+      name: 'Torbjorn',
+      has_key_item1: false,
+      has_key_item2: false,
+      has_key_item3: false,
+    },
+    {
+      user_id: 2,
+      game_id: 1,
+      scenario_id: 1,
+      name: 'Mikaelis',
+      has_key_item1: false,
+      has_key_item2: false,
+      has_key_item3: false,
+    },
+    {
+      user_id: 3,
+      game_id: 1,
+      scenario_id: 1,
+      name: 'Reginald',
+      has_key_item1: false,
+      has_key_item2: false,
+      has_key_item3: false,
+    },
+  ], {
+    ignoreDuplicates: true // In case the adventurers already exist, ignore the duplicate entries
+  });
 };
 
 module.exports = seedAdventurers;

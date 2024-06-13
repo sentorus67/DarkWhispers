@@ -29,7 +29,7 @@ Scenario.init(
     },
     key_item: {
       type: DataTypes.INTEGER,
-      allowNull:true,
+      allowNull: true,
     },
     choices: {
       type: DataTypes.JSONB,
@@ -38,11 +38,10 @@ Scenario.init(
   },
   {
     sequelize,
+    modelName: 'scenario',
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'scenario',
-    tableName: 'scenarios',
   }
 );
 
