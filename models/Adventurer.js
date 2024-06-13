@@ -14,26 +14,26 @@ Adventurer.init(
     user_id:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id'
-      },
+      // references: {
+      //   model: 'users',
+      //   key: 'id'
+      // },
     },
     game_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'game',
-        key: 'id'
-      },
+      // references: {
+      //   model: 'game',
+      //   key: 'id'
+      // },
     },
     scenario_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'scenarios',
-        key: 'id'
-      },
+      // references: {
+      //   model: 'scenario',
+      //   key: 'id'
+      // },
     },
     name: {
       type: DataTypes.STRING,
