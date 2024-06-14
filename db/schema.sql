@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS game_states CASCADE;
 DROP TABLE IF EXISTS scenario CASCADE;
 DROP TABLE IF EXISTS game CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS adventurer CASCADE;
 
 -- Users: Stores user information with a unique username and a hashed password.

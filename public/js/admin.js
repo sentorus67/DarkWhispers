@@ -1,70 +1,42 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const dataForm = document.getElementById("data-submit-form");
-  const dataList = document.getElementById("data-list");
+const AddScenarioFormHandler = async (event) => {
+    event.preventDefault();
 
-  // Store initial form state in sessionStorage
-  const formInitialState = dataForm.innerHTML;
-  sessionStorage.setItem('formInitialState', formInitialState);
+    const title = document.querySelector('#title').value;
+    const description = document.querySelector('#description').value;
+    const choice1 = document.querySelector('#choice1').value;
+    const choice2 = document.querySelector('#choice2').value;
+    const choices = [choice1, choice2];
 
-  // Check if the form should be reset
-  if (sessionStorage.getItem('resetForm') === 'true') {
-      dataForm.innerHTML = sessionStorage.getItem('formInitialState');
-      sessionStorage.setItem('resetForm', 'false');
-  }
+    if (title && description && choices.length > 0) {
+        const response = await fetch('/api/admin/create', {
+            method: 'POST',
+            body: JSON.stringify(
+                {
+                    title,
+                    description,
+                    choices
+                }),
+            headers: { 'Content-Type': 'application/json' },
+        });
 
-  // Handle form submission for create and update
-  dataForm.addEventListener("submit", function(event) {
-      event.preventDefault();
+        if (response.ok) {
+            sessionStorage.setItem('resetLoginForm', 'true');
+            document.location.replace('/admin');
+            alert('Scenario added!');
+        } else {
+            alert('Failed to create scenario.');
+        }
+    }
+};
 
-      const formData = new FormData(dataForm);
-      const url = dataForm.dataset.editing === "true" ? `/data/${formData.get('id')}/update` : '/data/create';
-      const method = dataForm.dataset.editing === "true" ? "PUT" : "POST";
+document.addEventListener("DOMContentLoaded", function () {
+    // Ensure form event listener is attached after DOM is loaded
+    document
+        .querySelector('#add-scenario-form')
+        .addEventListener('submit', AddScenarioFormHandler);
 
-      fetch(url, {
-          method: method,
-          body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log("Data saved successfully:", data);
-          dataForm.reset();
-          sessionStorage.setItem('resetForm', 'false'); // Set flag to reset form
-          updateDataList();
-      })
-      .catch(error => {
-          console.error("Error saving data:", error);
-      });
-  });
-
-  // Function to update data list
-  function updateDataList() {
-      const dataList = document.getElementById("data-list"); // Retrieve dataList again here
-      if (!dataList) {
-          console.error("Element with ID 'data-list' not found.");
-          return;
-      }
-      
-      fetch('/api/admin/users')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          dataList.innerHTML = ''; // Clear previous data
-          data.forEach(item => {
-              dataList.innerHTML += `<li>${item.name} - ${item.email}
-                  <button class="edit-btn" data-id="${item.id}">Edit</button>
-                  <button class="delete-btn" data-id="${item.id}">Delete</button>
-              </li>`;
-          });
-      })
-      .catch(error => {
-          console.error('Error updating data list:', error);
-      });
-  }
-
-  // Initial data list load
-  updateDataList();
+    // Ensure the event listener for the button is attached after DOM is loaded
+    document.getElementById('get-users-btn').addEventListener('click', () => {
+        window.location.href = '/admin/users';
+    });
 });

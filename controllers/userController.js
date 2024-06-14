@@ -47,12 +47,14 @@ exports.register = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      role: 'user',
     });
 
     req.session.save(() => {
       req.session.userId = newUser.id;
       req.session.username = newUser.username;
       req.session.loggedIn = true;
+      req.session.role = newUser.role;
 
       console.log('User created and session saved:', newUser);
       res.redirect('/bypass');
@@ -71,11 +73,12 @@ exports.login = async (req, res) => {
 
     // Check if the user exists
     const user = await User.findOne({ where: { username } });
-    if (!user) return res.status(400).send('User does not exist');
+    if (!user) return res.render('./partials/login', { error: 'User does not exist' });
+
 
     // Check if the password is correct
     const validPass = await bcrypt.compare(password, user.password);
-    if (!validPass) return res.status(400).send('Invalid password');
+    if (!validPass) return res.render('./partials/login', { error: 'Invalid password' });
 
     // Create and assign a token
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
@@ -85,6 +88,7 @@ exports.login = async (req, res) => {
       req.session.userId = user.id;
       req.session.username = user.username;
       req.session.loggedIn = true;
+      req.session.role = user.role;
 
       
       console.log('Signed in.', user);
@@ -101,7 +105,7 @@ exports.logout = (req, res) => {
     if (err) {
       return res.status(500).send('Could not log out.');
     } else {
-      res.send('Logout successful');
+      res.render('/main');
     }
   });
 };

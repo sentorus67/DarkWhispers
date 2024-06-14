@@ -17,13 +17,22 @@ exports.getScenarioById = async (req, res) => {
 // Create a new scenario
 exports.createScenario = async (req, res) => {
   try {
-    const { title, description, choices } = req.body; // Extract values from request body
-    const newScenario = await Scenario.create({ title, description, choices });
-    res.status(201).json(newScenario);
-    res.render('./partials/admin')
+    const { title, description, choices } = req.body;
+
+    // Create a new scenario in the database
+    await Scenario.create({
+      title,
+      description,
+      choices: JSON.stringify(choices)
+    });
+
+    // Redirect to the admin page with a success parameter
+    res.redirect('/admin?success=true');
   } catch (err) {
     console.error('Error creating scenario:', err);
-    res.status(500).json({ error: 'Failed to create scenario' });
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'An error occurred while creating the scenario.' });
+    }
   }
 };
 

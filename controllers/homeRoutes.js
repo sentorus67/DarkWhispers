@@ -223,9 +223,10 @@ router.get('/scenario/:id', async (req, res) => {
 });
 
 //Render admin page
-router.get('/admin', /**ensureAdmin,*/ async (req, res) => {
+router.get('/admin', ensureAdmin, async (req, res) => {
   try {
     res.render('./partials/admin');
+
   } catch (err) {
     res.status(500).json(err);
   }

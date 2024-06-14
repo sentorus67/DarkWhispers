@@ -3,42 +3,52 @@
     <title>Admin Page</title>
 </head>
 
+
 <body>
-    <div class="is-centered">
-
-
-        <h1 class="is-centered">Add Information</h1>
-        <form id="add-scenario-form" action="/api/admin/create" method="POST">
-            <div class="column is-one-third is-centered">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
+    <div class="container">
+         <button id="get-users-btn" class="button is-info is-rounded mb-3 is-centered">See All Users</button>
+        <h1 class="title has-text-centered">Add Information</h1>
+        <form id="add-scenario-form" action="/api/admin/create" method="POST" class="columns is-centered">
+            <div class="column is-one-third">
+                <div class="field">
+                    <label class="label has-text-centered my-4" for="title">Title:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="title" name="title" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="description">Description:</label>
+                    <div class="control">
+                        <textarea class="textarea" id="description" name="description" required></textarea>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label" for="choice1">Choice 1:</label>
+                            <div class="control">
+                                <input class="input" type="text" id="choice1" name="choices[]" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label" for="choice2">Choice 2:</label>
+                            <div class="control">
+                                <input class="input" type="text" id="choice2" name="choices[]" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-narrow">
+                        <div class="field is-grouped is-grouped-centered">
+                            <div class="control">
+                                <button type="submit" class="button is-primary is-rounded mb-3">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="column is-one-third is-centered">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-            <div class="column is-one-third is-centered">
-                <label for="choice1">Choice 1:</label>
-                <input type="text" id="choice1" name="choices[]" required>
-                <label for="choice2">Choice 2:</label>
-                <input type="text" id="choice2" name="choices[]" required>
-            </div>
-            <button type="submit" class="button is-primary is-rounded mb-3 is-centered">Submit</button>
         </form>
-
-
-
-        <div class="box column has-text-white has-background-info is-rounded mx-2">
-            <h2>Users</h2>
-            <ul id="data-list">
-                {{#each users}}
-                <li>{{this.name}} - {{this.email}}
-                    <button class="edit-btn" data-id="{{this.id}}">Edit</button>
-                    <button class="delete-btn" data-id="{{this.id}}">Delete</button>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
-
-        <script src="/js/admin1.js"></script>
+    </div>
+    <script src="/js/admin.js"></script>
 </body>
