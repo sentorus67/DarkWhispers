@@ -21,7 +21,7 @@ GameState.init(
     current_scenario_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'scenarios',
+        model: 'scenario',
         key: 'id',
       },
     },
