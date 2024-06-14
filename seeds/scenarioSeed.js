@@ -5,7 +5,11 @@ const scenarioData = [
     id: 1, // Manually set ID for testing
     game_id: 1, // Assuming Dark Whispers has ID 1
     title: 'The Beginning',
+
     description: 'Your journey begins in the dark forest. The evening sun rest upon trees. The path, unkempt, winds in a manner of directions.',
+
+    // manually added for testing
+
     choices: [
       {
         choice_id: 1,
@@ -23,7 +27,10 @@ const scenarioData = [
     id: 2, // Manually set ID for testing
     game_id: 1,
     title: 'The Northern Path',
+
     description: 'As you travel north, you see the husky trees clear up. the buzzing of insects fading. At a distance you can see the vauge shape of buildings. It must be a village!',
+
+
     choices: [
       {
         choice_id: 3,
@@ -41,7 +48,11 @@ const scenarioData = [
     id: 3, // Manually set ID for testing
     game_id: 1,
     title: 'The Eastern Path',
+
     description: 'As you journey eastward you can hear the croaks of critters and the crunching of leaves. Soon the sound of flowing water approaches, a wide stream blocks your path.',
+
+// manually added for testing
+
     choices: [
       {
         choice_id: 5,
@@ -60,7 +71,11 @@ const scenarioData = [
     game_id: 1,
     title: 'A crucial Encounter',
     description: 'You find the village to be Barren. Huts destroyed and fields razed. In its wake, you see a bear run towards you.',
+
     description: ' You find the village to be Barren. Huts detroyed and fields razed. No signs of people could be found except for discarded socks. As you stroll thrpugh the empty town you see a grizzly bear burst through a window and rush towards you, teeth snarling',
+
+// manually added for testing
+
     choices: [
       {
         choice_id: 7,
@@ -77,8 +92,11 @@ const scenarioData = [
   {
     id: 5, // Manually set ID for testing
     game_id: 1,
+
     title: ' Game Over',
     description: '  You stand your ground and punch the bear. It barely flinches from the attack before it descends upon you. You are soon ripped to shreds (END).',
+
+
     choices: [
       {
         choice_id: 9,
@@ -95,8 +113,12 @@ const scenarioData = [
   {
     id: 6, // Manually set ID for testing
     game_id: 1,
+
     title: ' Victory',
     description: 'You wield your blade and swipe at the beast. you only scratch the top of the bears forehead, but luckily the bear gets startled, It flees into cavern that has the sign "Temple" upon it. Surely thats where treasure lies.',
+
+// manually added for testing
+
     choices: [
       {
         choice_id: 11,
@@ -109,7 +131,11 @@ const scenarioData = [
     id: 7, // Manually set ID for testing
     game_id: 1,
     title: 'Game Over',
+
     description: 'You attempt to run away from the beast. Sadly this bear is disturbingly fast, by the time you pick up speed the bear reappers in front of you, and in one motion, you are swallowed whole. (END).',
+
+// manually added for testing
+
     choices: [
       {
         choice_id: 12,
@@ -138,8 +164,12 @@ const scenarioData = [
 },
   { //9
     game_id: 1,
+
     title: 'The Treasure Cavern',
     description: 'Entering the Cavern, you see inside is much more intricate than what the outer walls would lead you to believe. inside are many images depicting people holding something that radiates light, as you travel deeper and deeper you hear a click underneath your foot. Soon from behind a massive boulder begins to tumble and roll towards you!',
+
+  // manually added for testing
+
     choices: [
       {
         choice_id: 15,
