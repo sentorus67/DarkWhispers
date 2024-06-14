@@ -15,7 +15,7 @@ Scenario.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'game',
-        key: 'id'
+        key: 'id',
       },
       onDelete: 'CASCADE',
     },
@@ -27,10 +27,10 @@ Scenario.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    key_item: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+    // key_item: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
     choices: {
       type: DataTypes.JSONB,
       allowNull: false,
@@ -38,10 +38,10 @@ Scenario.init(
   },
   {
     sequelize,
-    modelName: 'scenario',
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'scenario',
   }
 );
 

@@ -5,7 +5,7 @@ const User = require('./user');
 const Game = require('./Game');
 const Scenario = require('./scenario');
 const GameState = require('./gameState');
-const Item = require('./Adventurer');
+//const Item = require('./Adventurer');
 const Adventurer = require('./Adventurer');
 
 // Create associations
@@ -35,7 +35,6 @@ GameState.belongsTo(Scenario, {
 Scenario.belongsTo(Game, {
   foreignKey: 'game_id'
 });
-
 
 
 const db = {

@@ -5,32 +5,23 @@ const seedAdventurers = async () => {
     {
       user_id: 1,
       game_id: 1,
-      scenario_id: 1,
+      scenario_id: 1, // Ensure this scenario_id exists in the scenarios table
       name: 'Torbjorn',
-      has_key_item1: false,
-      has_key_item2: false,
-      has_key_item3: false,
     },
     {
       user_id: 2,
       game_id: 1,
-      scenario_id: 1,
+      scenario_id: 1, // Ensure this scenario_id exists in the scenarios table
       name: 'Mikaelis',
-      has_key_item1: false,
-      has_key_item2: false,
-      has_key_item3: false,
     },
     {
       user_id: 3,
       game_id: 1,
-      scenario_id: 1,
+      scenario_id: 1, // Ensure this scenario_id exists in the scenarios table
       name: 'Reginald',
-      has_key_item1: false,
-      has_key_item2: false,
-      has_key_item3: false,
     },
   ], {
-    ignoreDuplicates: true // In case the adventurers already exist, ignore the duplicate entries
+    ignoreDuplicates: true
   });
 };
 

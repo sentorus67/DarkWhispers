@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/login', async (req, res) => {
   try {
     if (req.session.logged_in) {
-      res.redirect('/game');
+      res.redirect('./partials/game');
       return;
     } else{
     res.render('./partials/login');
@@ -39,11 +39,9 @@ router.get('/login', async (req, res) => {
 router.get('/register', async (req, res) => {
   try {
     if (req.session.logged_in) {
-      res.redirect('/game');
+      res.render('./partials/game');
       return;
     }
-    
-    
     res.render('./partials/register');
   } catch (err) {
     res.status(500).json(err);
