@@ -6,6 +6,7 @@ const scenarioData = [
     game_id: 1, // Assuming Dark Whispers has ID 1
     title: 'The Beginning',
     description: 'You find yourself in a dark forest. Paths lead north and east.',
+    key_item: 1, // manually added for testing
     choices: [
       {
         choice_id: 1,
@@ -24,6 +25,7 @@ const scenarioData = [
     game_id: 1,
     title: 'The Northern Path',
     description: 'The path leads to a small village.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 3,
@@ -42,6 +44,7 @@ const scenarioData = [
     game_id: 1,
     title: 'The Eastern Path',
     description: 'The path leads to a river.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 5,
@@ -60,6 +63,7 @@ const scenarioData = [
     game_id: 1,
     title: 'A crucial Encounter',
     description: 'You find the village to be Barren. Huts destroyed and fields razed. In its wake, you see a bear run towards you.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 7,
@@ -78,6 +82,7 @@ const scenarioData = [
     game_id: 1,
     title: 'Game Over',
     description: 'You punch the bear in the nose. Unfortunately, it wasn\'t enough and the beast mauls you to shreds.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 9,
@@ -96,6 +101,7 @@ const scenarioData = [
     game_id: 1,
     title: 'Victory',
     description: 'You wield your blade and give the bear a clean haircut. The bear, satisfied with its cut, leaves you an $8 tip and wanders off.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 11,
@@ -109,6 +115,7 @@ const scenarioData = [
     game_id: 1,
     title: 'Game Over',
     description: 'You attempt to run away from the beast. Unfortunately, it knows how to teleport. It pops in front of you and eats you.',
+    key_item: 1,// manually added for testing
     choices: [
       {
         choice_id: 12,
@@ -127,7 +134,7 @@ const scenarioData = [
     game_id: 1,
     title: 'Discover something',
     description: 'Wading through the river you discover a piece of iron. It is a magic sword! Surely this will be useful.',
-    key_item: 1,
+    key_item: 1,  // manually added for testing
     choices: [
       {
         choice_id: 14,
