@@ -27,10 +27,10 @@ Scenario.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    key_item: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+    // key_item: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
     choices: {
       type: DataTypes.JSONB,
       allowNull: false,

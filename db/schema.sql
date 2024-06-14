@@ -36,7 +36,7 @@ CREATE TABLE scenario (
     game_id INTEGER REFERENCES game(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    key_item INTEGER, -- Allowing null values for key_item
+    -- key_item INTEGER, -- Allowing null values for key_item
     choices JSONB NOT NULL 
 );
 
