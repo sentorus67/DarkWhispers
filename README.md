@@ -30,114 +30,114 @@
 
 Dark Whispers is an interactive text-based adventure game designed to provide users with a captivating and immersive experience. The project is built using modern web development technologies and follows the Model-View-Controller (MVC) architectural pattern to ensure a clear separation of concerns and maintainability. The primary stack used includes Node.js, Express.js, Sequelize ORM for database management, Handlebars.js for templating, and Bulma CSS for styling.
 
-## Features
+### Features
 
-### User Authentication:
+#### User Authentication:
 
  Users can register and log in to access their game progress.
 Authentication is handled using sessions and JWT tokens for secure and scalable user management.
 Passwords are securely hashed using bcrypt before storing them in the database.
 
-### Admin Toolkit:
+#### Admin Toolkit:
 
  Admin users have access to an Admin Toolkit that allows them to manage game scenarios and monitor user activities.
 Admin functionalities are protected and only accessible to users with the admin role.
 
-### Game Mechanics:
+##### Game Mechanics:
 
  The game features multiple scenarios where users make choices that affect the outcome.
 Game state management ensures that user progress is saved and can be continued later.
 
-### Responsive Design:
+#### Responsive Design:
 
  The UI is styled using Bulma CSS to ensure a modern and responsive design.
 Users can interact with the game on various devices, including desktops, tablets, and mobile phones.
 
 ## Challenges Faced
 
-### Server Issues:
+#### Server Issues:
 
  One of the primary challenges encountered was related to server configuration and session management.
 Initial attempts to set up the server resulted in multiple errors, including issues with session storage and route handling.
 Debugging these issues required a deep dive into the Express.js session middleware and Sequelize integration.
 
-### User Authentication and Registration:
+#### User Authentication and Registration:
 
  Ensuring secure user authentication was critical. Implementing bcrypt for password hashing and managing JWT tokens for session management was a complex task.
 Handling errors such as duplicate email registrations and invalid login credentials required careful validation and error messaging.
 Implementing middleware to protect routes and ensure only authenticated users could access certain pages was another challenge.
 
-###  MVC Implementation:
+####  MVC Implementation:
 
 Structuring the application following the MVC pattern required careful planning and organization.
 Defining clear roles for models, views, and controllers helped in maintaining a clean codebase but also posed challenges in terms of data flow and management.
 Controllers were designed to handle business logic and interact with models, ensuring that views remained presentation-focused.
 
-### Database Management with Sequelize ORM:
+#### Database Management with Sequelize ORM:
 
  Using Sequelize ORM to manage database operations required understanding its query methods and associations.
 Issues such as syncing models, handling migrations, and seeding the database with initial data were tackled.
 Ensuring data integrity and handling complex queries, especially for game state management, was a significant challenge.
 
-### Technical Stack
+## Technical Stack
 
-Node.js & Express.js:
+#### Node.js & Express.js:
 
  The backend of the application is built on Node.js with Express.js providing a robust framework for handling routes, middleware, and server configuration.
 
-### Sequelize ORM:
+#### Sequelize ORM:
 
  Sequelize is used for Object-Relational Mapping (ORM) to interact with the PostgreSQL database.
 It simplifies database queries and provides a clear structure for defining models and their relationships.
 
-### Handlebars.js:
+#### Handlebars.js:
 
  Handlebars.js is used as the templating engine to render dynamic HTML content.
 It supports layouts and partials, making it easier to maintain and reuse UI components.
 
-### Bulma CSS:
+#### Bulma CSS:
 
  Bulma CSS framework is used for styling, offering a modern and responsive design out of the box.
 It ensures a consistent and visually appealing user interface.
 
 ## Learning Outcomes
 
-### MVC Architecture:
+#### MVC Architecture:
 
  Implementing the MVC pattern helped in understanding the importance of separating concerns in web applications.
 It improved the maintainability and scalability of the codebase.
 
-### Security Best Practices:
+#### Security Best Practices:
 
  Learning to implement secure authentication mechanisms using bcrypt and JWT.
 Understanding the importance of session management and secure cookie practices.
 
-### Database Management:
+#### Database Management:
 
  Gaining experience with Sequelize ORM for managing complex database operations and relationships.
 Handling migrations and seeding data for testing and development purposes.
 
-### Error Handling and Debugging:
+#### Error Handling and Debugging:
 
  Developing skills in debugging and handling various server-side and client-side errors.
 Implementing user-friendly error messages and validations to enhance the user experience.
 
 ## Future Enhancements
 
-### Enhanced Game Scenarios:
+#### Enhanced Game Scenarios:
 
  Adding more game scenarios and branching storylines to increase engagement.
 Implementing features like saving multiple game states and replay options.
 
-### User Profiles and Progress Tracking:
+#### User Profiles and Progress Tracking:
 
  Allowing users to create profiles and track their progress and achievements within the game.
 
-### Improved Admin Tools:
+#### Improved Admin Tools:
 
  Developing more comprehensive admin tools for better game management and user analytics.
 
-### Mobile Optimization:
+#### Mobile Optimization:
 
  Further optimizing the game for mobile devices to ensure a seamless experience on smaller screens.
 Dark Whispers aims to provide an engaging and interactive experience for users while offering robust backend management and security features. The project showcases the implementation of modern web development practices and highlights the importance of structured architecture and secure coding standards.
