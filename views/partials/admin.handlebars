@@ -32,13 +32,12 @@
             <h2>Users</h2>
             <ul id="data-list">
                 {{#each users}}
-                <li>{{this.name}} - {{this.email}}
-                    <button class="edit-btn" data-id="{{this.id}}">Edit</button>
-                    <button class="delete-btn" data-id="{{this.id}}">Delete</button>
+                <li>{{users.username}} - {{users.email}}
+                    <button class="edit-btn" data-id="">Edit</button>
+                    <button class="delete-btn" data-id="">Delete</button>
                 </li>
                 {{/each}}
             </ul>
         </div>
-
-        <script src="/js/admin1.js"></script>
+        <script src="/js/admin.js"></script>
 </body>

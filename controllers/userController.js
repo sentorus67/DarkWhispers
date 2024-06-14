@@ -55,8 +55,7 @@ exports.register = async (req, res) => {
       req.session.loggedIn = true;
 
       console.log('User created and session saved:', newUser);
-      res.redirect('/bypass');
-      // res.status(200).json(newUser);
+      res.redirect('/game');
     });
   } catch (err) {
     // Log the error
@@ -66,42 +65,41 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
-    // Check if the user exists
+  try {
     const user = await User.findOne({ where: { username } });
     if (!user) return res.status(400).send('User does not exist');
 
-    // Check if the password is correct
-    const validPass = await bcrypt.compare(password, user.password);
-    if (!validPass) return res.status(400).send('Invalid password');
+     // Check if the password is correct
+     const validPass = await bcrypt.compare(password, user.password);
+     if (!validPass) return res.status(400).send('Invalid password');
 
-    // Create and assign a token
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+    req.session.user = {
+      id: user.id,
+      username: user.username,
+      role: user.role,
+    };
+    req.session.logged_in = true;
 
-    req.session.save(() => {
-      req.session.token = token;
-      req.session.userId = user.id;
-      req.session.username = user.username;
-      req.session.loggedIn = true;
+    console.log('Session after login:', req.session);
 
-      
-      console.log('Signed in.', user);
-      res.redirect('/bypass');
-      // res.status(200).json({ message: 'Login successful', redirectUrl: '/game/scenario' });
-    });
-  } catch (err) {
-    res.status(500).send(err.message);
+    if (user.role === 'admin') {
+      return res.render('./partials/admin');
+    } else {
+      return res.render('./partials/game');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
 exports.logout = (req, res) => {
-  req.session.destroy(err => {
+  req.session.user.destroy(err => {
     if (err) {
       return res.status(500).send('Could not log out.');
     } else {
-      res.send('Logout successful');
+      res.redirect('/');
     }
   });
 };

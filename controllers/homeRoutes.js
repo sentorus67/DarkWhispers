@@ -226,12 +226,17 @@ router.get('/scenario/:id', async (req, res) => {
 });
 
 //Render admin page
-router.get('/admin', /**ensureAdmin,*/ async (req, res) => {
+router.get('/admin', withAuth, ensureAdmin, async (req, res) => {
   try {
-    res.render('./partials/admin');
+      const users = await User.find();
+      res.render('./partials/admin', {
+          users: users.map(user => user.get({ plain: true })),
+      });
   } catch (err) {
-    res.status(500).json(err);
+      res.status(500).json(err);
+
   }
 });
 
 module.exports = router;
+
