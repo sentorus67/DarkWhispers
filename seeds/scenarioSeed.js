@@ -5,8 +5,8 @@ const scenarioData = [
     id: 1, // Manually set ID for testing
     game_id: 1, // Assuming Dark Whispers has ID 1
     title: 'The Beginning',
-
     description: 'Your journey begins in the dark forest. The evening sun rest upon trees. The path, unkempt, winds in a manner of directions.',
+   
 
     // manually added for testing
 
