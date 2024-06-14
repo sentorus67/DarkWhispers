@@ -4,7 +4,7 @@ CREATE DATABASE darkwhispers_db;
 
 \c darkwhispers_db;
 
--- Drop any tables if they exist
+Drop any tables if they exist
 DROP TABLE IF EXISTS game_states_items CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS game_states CASCADE;

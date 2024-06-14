@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { Game, Scenario, User, Adventurer } = require('../models');
-// const { Game, Scenario, User, Adventurer } = require('../models');
 const withAuth = require('../utils/auth')
 const ensureAdmin = require('../middleware/adminMiddleware');
 const { FLOAT } = require('sequelize');
@@ -10,10 +9,10 @@ const { FLOAT } = require('sequelize');
 router.get('/', async (req, res) => {
   try {
 
-    const games = await Game.findAll();
+    //const games = await Game.findAll();
 
     res.render('./partials/game', {
-      games: games.map(game => game.get({ plain: true })),
+      //games: games.map(game => game.get({ plain: true })),
 
     });
   } catch (err) {
