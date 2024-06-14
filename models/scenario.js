@@ -15,7 +15,7 @@ Scenario.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'game',
-        key: 'id'
+        key: 'id',
       },
       onDelete: 'CASCADE',
     },
@@ -38,10 +38,10 @@ Scenario.init(
   },
   {
     sequelize,
-    modelName: 'scenario',
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'scenario',
   }
 );
 

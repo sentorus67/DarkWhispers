@@ -19,10 +19,10 @@ Game.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // releaseDate: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false,
-    // },
+    releaseDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
   {
     sequelize,

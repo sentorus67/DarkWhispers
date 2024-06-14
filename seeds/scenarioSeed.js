@@ -1,8 +1,8 @@
 const { Scenario } = require('../models');
 
 const scenarioData = [
-  {// 1 Manually set ID for testing
-   
+  {
+    id: 1, // Manually set ID for testing
     game_id: 1, // Assuming Dark Whispers has ID 1
     title: 'The Beginning',
     description: 'Your journey begins in the dark forest. The evening sun rest upon trees. The path, unkempt, winds in a manner of directions.',
@@ -19,7 +19,8 @@ const scenarioData = [
       },
     ],
   },
-  {// 2 Manually set ID for testing
+  {
+    id: 2, // Manually set ID for testing
     game_id: 1,
     title: 'The Northern Path',
     description: 'As you travel north, you see the husky trees clear up. the buzzing of insects fading. At a distance you can see the vauge shape of buildings. It must be a village!',
@@ -36,7 +37,8 @@ const scenarioData = [
       },
     ],
   },
-  { // 3  Manually set ID for testing
+  {
+    id: 3, // Manually set ID for testing
     game_id: 1,
     title: 'The Eastern Path',
     description: 'As you journey eastward you can hear the croaks of critters and the crunching of leaves. Soon the sound of flowing water approaches, a wide stream blocks your path.',
@@ -53,25 +55,27 @@ const scenarioData = [
       },
     ],
   },
-  { //4 
+  {
+    id: 4, // Manually set ID for testing
     game_id: 1,
     title: 'A crucial Encounter',
+    description: 'You find the village to be Barren. Huts destroyed and fields razed. In its wake, you see a bear run towards you.',
     description: ' You find the village to be Barren. Huts detroyed and fields razed. No signs of people could be found except for discarded socks. As you stroll thrpugh the empty town you see a grizzly bear burst through a window and rush towards you, teeth snarling',
     choices: [
       {
         choice_id: 7,
         description: 'Fight back',
-        next_scenario_id: 5.16,
+        next_scenario_id: 5,
       },
       {
         choice_id: 8,
         description: 'Run away',
         next_scenario_id: 7,
-
       },
     ],
- },
-  { //5
+  },
+  {
+    id: 5, // Manually set ID for testing
     game_id: 1,
     title: ' Game Over',
     description: '  You stand your ground and punch the bear. It barely flinches from the attack before it descends upon you. You are soon ripped to shreds (END).',
@@ -87,8 +91,9 @@ const scenarioData = [
         next_scenario_id:  4,
       }
     ],
- },
-  { //6
+  },
+  {
+    id: 6, // Manually set ID for testing
     game_id: 1,
     title: ' Victory',
     description: 'You wield your blade and swipe at the beast. you only scratch the top of the bears forehead, but luckily the bear gets startled, It flees into cavern that has the sign "Temple" upon it. Surely thats where treasure lies.',
@@ -99,8 +104,9 @@ const scenarioData = [
         next_scenario_id: 9,
       },
     ],
- },
-  { //7
+  },
+  {
+    id: 7, // Manually set ID for testing
     game_id: 1,
     title: 'Game Over',
     description: 'You attempt to run away from the beast. Sadly this bear is disturbingly fast, by the time you pick up speed the bear reappers in front of you, and in one motion, you are swallowed whole. (END).',
@@ -114,7 +120,6 @@ const scenarioData = [
         choice_id: 13,
         description: 'Try again (from last option)',
         next_scenario_id: 4,
-
       },
     ],
  },
@@ -284,12 +289,15 @@ const scenarioData = [
 ];
 
 const seedScenarios = async () => {
-  await Scenario.bulkCreate(scenarioData.map(scenario => ({
-    ...scenario,
-    choices: JSON.stringify(scenario.choices), // Convert choices array to JSON string
-  })), {
-    ignoreDuplicates: true
-  });
+  await Scenario.bulkCreate(
+    scenarioData.map(scenario => ({
+      ...scenario,
+      choices: JSON.stringify(scenario.choices), // Convert choices array to JSON string
+    })),
+    {
+      ignoreDuplicates: true,
+    }
+  );
 };
 
 module.exports = seedScenarios;
