@@ -1,8 +1,8 @@
 const logout = async (event) => {
   event.preventDefault();
-  
+
     const response = await fetch('/api/auth/logout', {
-      method: 'POST',
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
   

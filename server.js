@@ -55,7 +55,7 @@ app.use(session({
 // Set up Handlebars.js as the template engine test 
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

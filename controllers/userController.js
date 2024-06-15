@@ -101,11 +101,13 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  req.session.destroy(err => {
+  req.session.destroy((err) => {
     if (err) {
-      return res.status(500).send('Could not log out.');
+      console.error('Error destroying session:', err);
+      res.status(500).send('it isnt working.');
     } else {
-      res.render('/main');
+      res.redirect('/login');
     }
   });
 };
+
