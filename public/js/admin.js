@@ -37,6 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ensure the event listener for the button is attached after DOM is loaded
     document.getElementById('get-users-btn').addEventListener('click', () => {
-        window.location.href = '/admin/users';
+        window.location.href = '/api/admin/users';
     });
 });

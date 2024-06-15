@@ -6,4 +6,4 @@ const ensureAdmin = (req, res, next) => {
     }
   };
   
-  module.exports = ensureAdmin;
+  module.exports = ensureAdmin
