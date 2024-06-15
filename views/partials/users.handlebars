@@ -1,0 +1,13 @@
+        <div class="box column has-text-white has-background-info is-rounded mx-2">
+            <h2>Users</h2>
+            <ul id="data-list">
+                {{#each users}}
+                <li>{{this.username}} - {{this.email}}
+                    <button class="edit-btn" data-id="">Edit</button>
+                    <button class="delete-btn" data-id="">Delete</button>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <script src="/js/adminUsers.js"></script>

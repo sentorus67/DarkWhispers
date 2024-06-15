@@ -51,7 +51,10 @@ router.get('/register', async (req, res) => {
 router.get('/bypass', async (req, res) => {
   try {
     res.render('./partials/game', {
-      loggedIn: true
+      loggedIn: true,
+      user: {
+        username: req.session.username
+      }
     });
   } catch (err) {
     res.status(500).json(err);
@@ -222,12 +225,14 @@ router.get('/scenario/:id', async (req, res) => {
   }
 });
 
-//Render admin page
-router.get('/admin', /**ensureAdmin,*/ async (req, res) => {
+// Render admin page
+router.get('/admin', ensureAdmin, async (req, res) => {
   try {
+    console.log('Admin route accessed'); // Debug: Log route access
     res.render('./partials/admin');
   } catch (err) {
-    res.status(500).json(err);
+    console.error('Error rendering admin page:', err); // Debug: Log error
+    res.status(500).json({ error: 'Failed to render admin page' });
   }
 });
 

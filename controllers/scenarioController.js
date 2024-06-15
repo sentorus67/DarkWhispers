@@ -17,34 +17,43 @@ exports.getScenarioById = async (req, res) => {
 // Create a new scenario
 exports.createScenario = async (req, res) => {
   try {
-    const { title, description, choices } = req.body; // Extract values from request body
-    const newScenario = await Scenario.create({ title, description, choices });
-    res.status(201).json(newScenario);
-    res.render('./partials/admin')
+    const { title, description, choices } = req.body;
+
+    // Create a new scenario in the database
+    await Scenario.create({
+      title,
+      description,
+      choices: JSON.stringify(choices)
+    });
+
+    // Redirect to the admin page with a success parameter
+    res.redirect('/admin?success=true');
   } catch (err) {
     console.error('Error creating scenario:', err);
-    res.status(500).json({ error: 'Failed to create scenario' });
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'An error occurred while creating the scenario.' });
+    }
   }
 };
 
 // Update an existing scenario
-exports.updateScenario = async (req, res) => {
-  try {
-    const [updated] = await Scenario.update(req.body, {
-      where: { id: req.params.id },
-    });
+// exports.updateScenario = async (req, res) => {
+//   try {
+//     const [updated] = await Scenario.update(req.body, {
+//       where: { id: req.params.id },
+//     });
 
-    if (!updated) {
-      res.status(404).json({ error: 'Scenario not found' });
-      return;
-    }
+//     if (!updated) {
+//       res.status(404).json({ error: 'Scenario not found' });
+//       return;
+//     }
 
-    const updatedScenario = await Scenario.findByPk(req.params.id);
-    res.status(200).json(updatedScenario);
-  } catch (err) {
-    console.error('Error updating scenario:', err);
-    res.status(500).json({ error: 'Failed to update scenario' });
-  }
+//     const updatedScenario = await Scenario.findByPk(req.params.id);
+//     res.status(200).json(updatedScenario);
+//   } catch (err) {
+//     console.error('Error updating scenario:', err);
+//     res.status(500).json({ error: 'Failed to update scenario' });
+//   }
 
   // // Delete a scenario
   // exports.deleteScenario = async (req, res) => {
@@ -65,4 +74,4 @@ exports.updateScenario = async (req, res) => {
   //   }
 
   // }
-};
+// };
