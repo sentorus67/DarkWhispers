@@ -70,7 +70,6 @@ const scenarioData = [
     id: 4, // Manually set ID for testing
     game_id: 1,
     title: 'A crucial Encounter',
-    description: 'You find the village to be Barren. Huts destroyed and fields razed. In its wake, you see a bear run towards you.',
 
     description: ' You find the village to be Barren. Huts detroyed and fields razed. No signs of people could be found except for discarded socks. As you stroll thrpugh the empty town you see a grizzly bear burst through a window and rush towards you, teeth snarling',
 

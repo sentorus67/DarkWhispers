@@ -51,7 +51,10 @@ router.get('/register', async (req, res) => {
 router.get('/bypass', async (req, res) => {
   try {
     res.render('./partials/game', {
-      loggedIn: true
+      loggedIn: true,
+      user: {
+        username: req.session.username
+      }
     });
   } catch (err) {
     res.status(500).json(err);
