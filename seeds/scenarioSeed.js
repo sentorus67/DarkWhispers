@@ -151,7 +151,7 @@ const scenarioData = [
   game_id: 1,
   title: 'A fortunate meeting',
   description: 'Wading through the river you trip and fall face first into the water. luckyily shallow you gather your bearings, but not before something glint in the water cathes your eye. You investigate to see a golden pair of scissors. You hold on to it, surely this will be useful.',
-  // key_item: 1,
+   key_item: 1,
   choices: [
     {
       choice_id: 14,
