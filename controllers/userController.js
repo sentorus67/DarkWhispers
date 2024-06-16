@@ -34,9 +34,13 @@ exports.register = async (req, res) => {
     console.log('Received data:', { username, password, email });
 
     // Check if the user already exists
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
+    const existingUserEmail = await User.findOne({ where: { email } });
+    if (existingUserEmail) {
       return res.status(400).json({ error: 'Email already in use' });
+    }
+    const existingUserUsername = await User.findOne({ where: { username }});
+    if (existingUserUsername) {
+      return res.status(400).json({ error: 'Username already in use'});
     }
 
     // Hash the password before saving it to the database
