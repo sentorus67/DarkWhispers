@@ -21,7 +21,7 @@ const signupFormHandler = async (event) => {
       if (error.error === 'Email already in use') {
         alert('Email already in use, try logging in.');
       } else if (error.error === 'Username already in use') {
-        alert('Username already in use, please choose a different one.');
+        alert('Username already in use, be a little more original.');
       } else {
         alert('Failed to sign up.');
       }
