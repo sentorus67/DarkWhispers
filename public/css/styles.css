@@ -34,4 +34,6 @@ html, body {
 
 /* Add additional styles here */
 
-
+#myHeadingLink {
+    color: black;
+  }
