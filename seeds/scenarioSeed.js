@@ -78,7 +78,7 @@ const scenarioData = [
       {
         choice_id: 7,
         description: 'Fight back',
-        next_scenario_id: 5,
+        next_scenario_id: 5.16,
       },
       {
         choice_id: 8,
