@@ -147,7 +147,8 @@ const scenarioData = [
       },
     ],
  },
- { //8
+ { 
+  id: 8,
   game_id: 1,
   title: 'A fortunate meeting',
   description: 'Wading through the river you trip and fall face first into the water. luckyily shallow you gather your bearings, but not before something glint in the water cathes your eye. You investigate to see a golden pair of scissors. You hold on to it, surely this will be useful.',
@@ -156,11 +157,12 @@ const scenarioData = [
     {
       choice_id: 14,
       description: 'Travel north',
-      next_scenario_id:2, 
+      next_scenario_id:9, 
     },
   ],
 },
-  { //9
+  { 
+    id: 9,
     game_id: 1,
 
     title: 'The Treasure Cavern',
@@ -177,18 +179,19 @@ const scenarioData = [
       {
         choice_id: 16,
         description: 'Dive for cover',
-        next_scenario_id: 11 ,
+        next_scenario_id: 11,
 
       },
       {
         choice_id: 17,
         description: 'Cry loudly',
-        next_scenario_id: 12 ,
+        next_scenario_id: 12,
 
       },
     ],
  },
- { //10
+ { 
+  id: 10,
   game_id: 1,
   title: 'Game Over',
   description: 'You attack the Rock with your Scissors, but its not strong enough, and soon you become paper.(END)',
@@ -206,6 +209,7 @@ const scenarioData = [
   ],
 },
 { //11
+  id: 11,
   game_id: 1,
   title: 'A Close Call',
   description: 'You dive into a convient person shaped hole. The boulder soon rushes past you, leaving you in perfect 3-dimensional form. With the weight lifted off you, you continue your exploration. You can feel the treasure close now.',
@@ -218,6 +222,7 @@ const scenarioData = [
   ],
 },
 { //12
+  id: 12,
   game_id: 1,
   title: 'Game Over',
   description: 'you get into a fetal position and cry, loudly. Your eyes and nose endelssy run as you let out a blood curdling weap. The boulder stops in its tracks, too embarrassed to keep going. It considers comforting you, but its a boulder and cant talk, rolls aways to avoid confronting this. While the boulder is gone you find yourself deeply embarrassed with what you did. You have no will to continue on, and as such go home empty-handed. (END))',
@@ -235,6 +240,7 @@ const scenarioData = [
   ],
 },
 { //13
+  id: 13,
   game_id: 1,
   title: 'The Final challenge',
   description: 'At the very depths of the cavern you find yourself in a room, made of pristine gold. Jewels of all sizes adorn the walls and ceiling. In the center lies a pedestal with a wither tablet. it reads: "For those that seek the promised treasure, Awnser thine riddle with clarity. When must a left-handed man and a right-handed man use the same hand? ',
@@ -272,6 +278,7 @@ const scenarioData = [
   ],
 },
 { //14
+  id: 14,
   game_id: 1,
   title: 'Game Over',
   description: 'You state your awnser. "Incorrect" a voice booms arounds you. Suddenly both the boulder and grizzly bear from earlier ambush you before you get the chance to react. The Bear punches you in the Jaw then the Boulder sets you on fire. You are no longer alive. (END)',
@@ -289,6 +296,7 @@ const scenarioData = [
   ],
 },
 { //15
+  id: 15,
   game_id: 1,
   title: 'Correct',
   description: 'You state your awnser. "The ground rumbles as the room begins to split. Light instensily radiates from the tabled, blinding you. Once it fades you see the treasure, floating in front of you. An unopened can of Nutella. Despite your nut Allergies, you take the prize and Return home. You enjoy a nice spread over toast inside your million-dollar mansion, before going to the Hospital because you have a serious nut allergy. Life is Good."',
@@ -301,6 +309,7 @@ const scenarioData = [
   ],
 },
 { //16
+  id: 16,
   game_id: 1,
   title: 'Congratulations',
   description: 'Thank you for Playing the first ever game in Dark Whispers. More to come (maybe), but feel free to try out other paths.',
