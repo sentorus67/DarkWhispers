@@ -157,7 +157,7 @@ const scenarioData = [
     {
       choice_id: 14,
       description: 'Travel north',
-      next_scenario_id:9, 
+      next_scenario_id:2, 
     },
   ],
 },
