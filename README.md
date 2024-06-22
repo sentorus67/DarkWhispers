@@ -25,6 +25,8 @@
 - [Credits](#credits)
 - [License](#license)
 
+### Archived
+*This repository has been archived to preserve the aspects of its creation under the two weeks alloted. To view Updated works and future projects, Make a request with a collaborator.*
 
 ## Description
 
